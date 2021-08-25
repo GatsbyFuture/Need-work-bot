@@ -27,11 +27,13 @@ async function chackUser(userData) {
    .find({ chat_id: userData.id })
    .select('status -_id');
   if (Status[0].status) {
-   await tbUser.updateOne({chat_id: userData.id},
-    {$set:{
-     status:true
-    }}
-    );
+   await tbUser.updateOne({ chat_id: userData.id },
+    {
+     $set: {
+      status: true
+     }
+    }
+   );
    return true;
   } else {
    return false;
@@ -53,19 +55,32 @@ async function dataAddWorker(Data, Id) {
    workType: Data.ishTuri,
   });
   await userplace.save();
-  await tbBot.updateOne({chat_id:Id.id},
-   {$set:{
-    status:true
-   }}
-   );
+  await tbBot.updateOne({ chat_id: Id.id },
+   {
+    $set: {
+     status: true
+    }
+   }
+  );
   return true;
  } catch (ex) {
   console.log("User datani joylashda xatolik bor" + ex);
   return false;
  }
 }
+// kerakli collectionda malumotlarni olish...
+async function selectData(TypeWorker) {
+ try{
+ return await tbUser.find()
+  .and([{ status: true }, { workType: TypeWorker }])
+  .select('firstName name age address telNumber -_id');
+ }catch(ex){
+  console.log('Hujjatlarni olishda xatolik :'+ex);
+ }
+}
 module.exports = {
  append,
  chackUser,
- dataAddWorker
+ dataAddWorker,
+ selectData
 };
