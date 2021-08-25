@@ -35,7 +35,7 @@ async function controlWhatch(ctx) {
       { source: './media/photoCategoriesWorker/posidamoy.jpg' },
       Extra.caption('<b>Ro\'yxatdan o\'tish yoki ro\'yxatni ko\'rish</b>')
         .markup(Markup.inlineKeyboard([
-          [Markup.callbackButton('Barcha ishchilar', 'worker1'),
+          [Markup.callbackButton('Barcha ishchilar', 'workers'),
           Markup.callbackButton('Nomzodni qo\'yish', 'rg1')],
           [Markup.callbackButton('Ortga qaytish', 'Back1')]
         ])).HTML()
