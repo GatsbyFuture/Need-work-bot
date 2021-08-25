@@ -108,7 +108,6 @@ bot.action('go1', async ctx => {
     ctx.session.manzil = undefined;
     ctx.session.telNomer = undefined;
     ctx.session.DataSkil = 0;
-
   }
 });
 // foydalanuvchini yig'ilgan barcha malumotini tozalash...
