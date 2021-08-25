@@ -13,6 +13,7 @@
   "dependencies": {
     "dotenv": "^10.0.0",
     "mongoose": "^5.13.7",
+    "nodemon": "^2.0.12",
     "telegraf": "^3.38.0"
   }
 }
