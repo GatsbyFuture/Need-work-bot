@@ -36,7 +36,7 @@ async function controlWhatch(ctx) {
       Extra.caption('<b>Ro\'yxatdan o\'tish yoki ro\'yxatni ko\'rish</b>')
         .markup(Markup.inlineKeyboard([
           [Markup.callbackButton('Barcha ishchilar', 'workers'),
-          Markup.callbackButton('Nomzodni qo\'yish', 'rg1')],
+          Markup.callbackButton('Nomzodni qo\'yish', 'rg')],
           [Markup.callbackButton('Ortga qaytish', 'Back1')]
         ])).HTML()
     ); break;
@@ -44,8 +44,8 @@ async function controlWhatch(ctx) {
       { source: './media/photoCategoriesWorker/enaga.jpg' },
       Extra.caption('<b>Ro\'yxatdan o\'tish yoki ro\'yxatni ko\'rish</b>')
       .markup(Markup.inlineKeyboard([
-        [Markup.callbackButton('Barcha ishchilar', 'worker2'),
-        Markup.callbackButton('Nomzodni qo\'yish', 'rg2')],
+        [Markup.callbackButton('Barcha ishchilar', 'workers'),
+        Markup.callbackButton('Nomzodni qo\'yish', 'rg')],
         [Markup.callbackButton('Ortga qaytish', 'Back1')]
       ])).HTML()
     ); break;
@@ -53,8 +53,8 @@ async function controlWhatch(ctx) {
       { source: './media/photoCategoriesWorker/o\'qituvchi.jpg' },
       Extra.caption('<b>Ro\'yxatdan o\'tish yoki ro\'yxatni ko\'rish</b>')
       .markup(Markup.inlineKeyboard([
-        [Markup.callbackButton('Barcha ishchilar', 'worker3'),
-        Markup.callbackButton('Nomzodni qo\'yish', 'rg3')],
+        [Markup.callbackButton('Barcha ishchilar', 'workers'),
+        Markup.callbackButton('Nomzodni qo\'yish', 'rg')],
         [Markup.callbackButton('Ortga qaytish', 'Back1')]
       ])).HTML()
     ); break;
@@ -62,8 +62,8 @@ async function controlWhatch(ctx) {
       { source: './media/photoCategoriesWorker/farrosh.jpg' },
       Extra.caption('<b>Ro\'yxatdan o\'tish yoki ro\'yxatni ko\'rish</b>')
       .markup(Markup.inlineKeyboard([
-        [Markup.callbackButton('Barcha ishchilar', 'worker4'),
-        Markup.callbackButton('Nomzodni qo\'yish', 'rg4')],
+        [Markup.callbackButton('Barcha ishchilar', 'workers'),
+        Markup.callbackButton('Nomzodni qo\'yish', 'rg')],
         [Markup.callbackButton('Ortga qaytish', 'Back1')]
       ])).HTML()
     ); break;
@@ -71,8 +71,8 @@ async function controlWhatch(ctx) {
       { source: './media/photoCategoriesWorker/pragramist.jpg' },
       Extra.caption('<b>Ro\'yxatdan o\'tish yoki ro\'yxatni ko\'rish</b>')
       .markup(Markup.inlineKeyboard([
-        [Markup.callbackButton('Barcha ishchilar', 'worker5'),
-        Markup.callbackButton('Nomzodni qo\'yish', 'rg5')],
+        [Markup.callbackButton('Barcha ishchilar', 'workers'),
+        Markup.callbackButton('Nomzodni qo\'yish', 'rg')],
         [Markup.callbackButton('Ortga qaytish', 'Back1')]
       ])).HTML()
     ); break;
@@ -80,8 +80,8 @@ async function controlWhatch(ctx) {
       { source: './media/photoCategoriesWorker/quruvchi.jpg' },
       Extra.caption('<b>Ro\'yxatdan o\'tish yoki ro\'yxatni ko\'rish</b>')
       .markup(Markup.inlineKeyboard([
-        [Markup.callbackButton('Barcha ishchilar', 'worker6'),
-        Markup.callbackButton('Nomzodni qo\'yish', 'rg6')],
+        [Markup.callbackButton('Barcha ishchilar', 'workers'),
+        Markup.callbackButton('Nomzodni qo\'yish', 'rg')],
         [Markup.callbackButton('Ortga qaytish', 'Back1')]
       ])).HTML()
     ); break;
@@ -89,8 +89,8 @@ async function controlWhatch(ctx) {
       { source: './media/photoCategoriesWorker/sotuvchi.jpg' },
       Extra.caption('<b>Ro\'yxatdan o\'tish yoki ro\'yxatni ko\'rish</b>')
       .markup(Markup.inlineKeyboard([
-        [Markup.callbackButton('Barcha ishchilar', 'worker7'),
-        Markup.callbackButton('Nomzodni qo\'yish', 'rg7')],
+        [Markup.callbackButton('Barcha ishchilar', 'workers'),
+        Markup.callbackButton('Nomzodni qo\'yish', 'rg')],
         [Markup.callbackButton('Ortga qaytish', 'Back1')]
       ])).HTML()
     ); break;
@@ -98,8 +98,8 @@ async function controlWhatch(ctx) {
       { source: './media/photoCategoriesWorker/makler.jpg' },
       Extra.caption('<b>Ro\'yxatdan o\'tish yoki ro\'yxatni ko\'rish</b>')
       .markup(Markup.inlineKeyboard([
-        [Markup.callbackButton('Barcha ishchilar', 'worker8'),
-        Markup.callbackButton('Nomzodni qo\'yish', 'rg8')],
+        [Markup.callbackButton('Barcha ishchilar', 'workers'),
+        Markup.callbackButton('Nomzodni qo\'yish', 'rg')],
         [Markup.callbackButton('Ortga qaytish', 'Back1')]
       ])).HTML()
     ); break;
@@ -107,8 +107,8 @@ async function controlWhatch(ctx) {
       { source: './media/photoCategoriesWorker/nonvoy.jpg' },
       Extra.caption('<b>Ro\'yxatdan o\'tish yoki ro\'yxatni ko\'rish</b>')
       .markup(Markup.inlineKeyboard([
-        [Markup.callbackButton('Barcha ishchilar', 'worker9'),
-        Markup.callbackButton('Nomzodni qo\'yish', 'rg9')],
+        [Markup.callbackButton('Barcha ishchilar', 'workers'),
+        Markup.callbackButton('Nomzodni qo\'yish', 'rg')],
         [Markup.callbackButton('Ortga qaytish', 'Back1')]
       ])).HTML()
     ); break;
@@ -116,8 +116,8 @@ async function controlWhatch(ctx) {
       { source: './media/photoCategoriesWorker/shafyor.jpg' },
       Extra.caption('<b>Ro\'yxatdan o\'tish yoki ro\'yxatni ko\'rish</b>')
       .markup(Markup.inlineKeyboard([
-        [Markup.callbackButton('Barcha ishchilar', 'worker10'),
-        Markup.callbackButton('Nomzodni qo\'yish', 'rg10')],
+        [Markup.callbackButton('Barcha ishchilar', 'workers'),
+        Markup.callbackButton('Nomzodni qo\'yish', 'rg')],
         [Markup.callbackButton('Ortga qaytish', 'Back1')]
       ])).HTML()
     ); break;
@@ -125,8 +125,8 @@ async function controlWhatch(ctx) {
       { source: './media/photoCategoriesWorker/triner.jpg' },
       Extra.caption('<b>Ro\'yxatdan o\'tish yoki ro\'yxatni ko\'rish</b>')
       .markup(Markup.inlineKeyboard([
-        [Markup.callbackButton('Barcha ishchilar', 'worker11'),
-        Markup.callbackButton('Nomzodni qo\'yish', 'rg11')],
+        [Markup.callbackButton('Barcha ishchilar', 'workers'),
+        Markup.callbackButton('Nomzodni qo\'yish', 'rg')],
         [Markup.callbackButton('Ortga qaytish', 'Back1')]
       ])).HTML()
     ); break;
@@ -134,8 +134,8 @@ async function controlWhatch(ctx) {
       { source: './media/photoCategoriesWorker/duradgor.jpg' },
       Extra.caption('<b>Ro\'yxatdan o\'tish yoki ro\'yxatni ko\'rish</b>')
       .markup(Markup.inlineKeyboard([
-        [Markup.callbackButton('Barcha ishchilar', 'worker12'),
-        Markup.callbackButton('Nomzodni qo\'yish', 'rg12')],
+        [Markup.callbackButton('Barcha ishchilar', 'workers'),
+        Markup.callbackButton('Nomzodni qo\'yish', 'rg')],
         [Markup.callbackButton('Ortga qaytish', 'Back1')]
       ])).HTML()
     ); break;
@@ -143,8 +143,8 @@ async function controlWhatch(ctx) {
       { source: './media/photoCategoriesWorker/mexanik.jpg' },
       Extra.caption('<b>Ro\'yxatdan o\'tish yoki ro\'yxatni ko\'rish</b>')
       .markup(Markup.inlineKeyboard([
-        [Markup.callbackButton('Barcha ishchilar', 'worker13'),
-        Markup.callbackButton('Nomzodni qo\'yish', 'rg13')],
+        [Markup.callbackButton('Barcha ishchilar', 'workers'),
+        Markup.callbackButton('Nomzodni qo\'yish', 'rg')],
         [Markup.callbackButton('Ortga qaytish', 'Back1')]
       ])).HTML()
     ); break;
@@ -152,8 +152,8 @@ async function controlWhatch(ctx) {
       { source: './media/photoCategoriesWorker/santexnik.jpg' },
       Extra.caption('<b>Ro\'yxatdan o\'tish yoki ro\'yxatni ko\'rish</b>')
       .markup(Markup.inlineKeyboard([
-        [Markup.callbackButton('Barcha ishchilar', 'worker14'),
-        Markup.callbackButton('Nomzodni qo\'yish', 'rg14')],
+        [Markup.callbackButton('Barcha ishchilar', 'workers'),
+        Markup.callbackButton('Nomzodni qo\'yish', 'rg')],
         [Markup.callbackButton('Ortga qaytish', 'Back1')]
       ])).HTML()
     ); break;
@@ -161,8 +161,8 @@ async function controlWhatch(ctx) {
       { source: './media/photoCategoriesWorker/automoychik.jpg' },
       Extra.caption('<b><i>Auto moychik</i>Ro\'yxatdan o\'tish yoki ro\'yxatni ko\'rish</b>')
       .markup(Markup.inlineKeyboard([
-        [Markup.callbackButton('Barcha ishchilar', 'worker15'),
-        Markup.callbackButton('Nomzodni qo\'yish', 'rg15')],
+        [Markup.callbackButton('Barcha ishchilar', 'workers'),
+        Markup.callbackButton('Nomzodni qo\'yish', 'rg')],
         [Markup.callbackButton('Ortga qaytish', 'Back1')]
       ])).HTML()
     ); break;
