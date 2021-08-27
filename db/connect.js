@@ -12,7 +12,6 @@ mongoose.connect('mongodb://localhost/user_data', {
     console.log('Malumotlar bazasiga ulanib bo\'lmadi error:' + ex);
   });
 // tablitsani schemasini tuzib olamiz...
-
 const userDataSchema = new mongoose.Schema({
   firstName: {
     type: String,
@@ -35,14 +34,18 @@ const userDataSchema = new mongoose.Schema({
   },
   telNumber: {
     type: String,
-    required: true,
+    required: true
   },
   status: {
     type: Boolean,
-    default: 1
+    default: true
   },
   workType: String,
   chat_id: Number,
+  stay_time: {
+    type: Number,
+    default: 1
+  },
   dataTime: {
     type: Date,
     default: Date.now
@@ -53,10 +56,6 @@ const userDataBotSchema = new mongoose.Schema({
   chat_id: Number,
   first_name: String,
   username: String,
-  status: {
-    type: Boolean,
-    default: false
-  },
   dateInto: {
     type: Date,
     default: Date.now
