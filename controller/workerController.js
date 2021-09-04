@@ -16,11 +16,11 @@ async function controlWorkers(ctx) {
   return await ctx.replyWithHTML('<i><b>Umumiy ishchilar ro\'yxati marhamat</b></i>',
     Markup
       .keyboard([
-        ['Posida moy', 'Enaga', 'O\'qituvchi'],
-        ['Farrosh', 'Pragramist', 'Quruvchi'],
-        ['Sotuvchi', 'Makler', 'Nonvoy'],
-        ['Shafyor', 'Sport triner', 'Durodgor'],
-        ['Mexanik', 'Santexnik', 'Auto moychik'],
+        ['Posida moychiklar', 'Enagalar', 'O\'qituvchilar'],
+        ['Farroshlar', 'Pragramistlar', 'Quruvchilar'],
+        ['Sotuvchilar', 'Maklerlar', 'Nonvoylar'],
+        ['Shafyorlar', 'Sport trinerlar', 'Elektriklar'],
+        ['Mexaniklar', 'Santexniklar', 'Auto moychiklar'],
       ])
       .oneTime()
       .resize()
@@ -31,7 +31,7 @@ async function controlWorkers(ctx) {
 async function controlWhatch(ctx) {
   let shoose = ctx.message.text;
   switch (shoose) {
-    case 'Posida moy': await ctx.replyWithPhoto(
+    case 'Posida moychiklar': await ctx.replyWithPhoto(
       { source: './media/photoCategoriesWorker/posidamoy.jpg' },
       Extra.caption('<b>Ro\'yxatdan o\'tish yoki ro\'yxatni ko\'rish</b>')
         .markup(Markup.inlineKeyboard([
@@ -40,7 +40,7 @@ async function controlWhatch(ctx) {
           [Markup.callbackButton('Ortga qaytish', 'Back1')]
         ])).HTML()
     ); break;
-    case 'Enaga': await ctx.replyWithPhoto(
+    case 'Enagalar': await ctx.replyWithPhoto(
       { source: './media/photoCategoriesWorker/enaga.jpg' },
       Extra.caption('<b>Ro\'yxatdan o\'tish yoki ro\'yxatni ko\'rish</b>')
       .markup(Markup.inlineKeyboard([
@@ -49,7 +49,7 @@ async function controlWhatch(ctx) {
         [Markup.callbackButton('Ortga qaytish', 'Back1')]
       ])).HTML()
     ); break;
-    case 'O\'qituvchi': await ctx.replyWithPhoto(
+    case 'O\'qituvchilar': await ctx.replyWithPhoto(
       { source: './media/photoCategoriesWorker/o\'qituvchi.jpg' },
       Extra.caption('<b>Ro\'yxatdan o\'tish yoki ro\'yxatni ko\'rish</b>')
       .markup(Markup.inlineKeyboard([
@@ -58,7 +58,7 @@ async function controlWhatch(ctx) {
         [Markup.callbackButton('Ortga qaytish', 'Back1')]
       ])).HTML()
     ); break;
-    case 'Farrosh': await ctx.replyWithPhoto(
+    case 'Farroshlar': await ctx.replyWithPhoto(
       { source: './media/photoCategoriesWorker/farrosh.jpg' },
       Extra.caption('<b>Ro\'yxatdan o\'tish yoki ro\'yxatni ko\'rish</b>')
       .markup(Markup.inlineKeyboard([
@@ -67,7 +67,7 @@ async function controlWhatch(ctx) {
         [Markup.callbackButton('Ortga qaytish', 'Back1')]
       ])).HTML()
     ); break;
-    case 'Pragramist': await ctx.replyWithPhoto(
+    case 'Pragramistlar': await ctx.replyWithPhoto(
       { source: './media/photoCategoriesWorker/pragramist.jpg' },
       Extra.caption('<b>Ro\'yxatdan o\'tish yoki ro\'yxatni ko\'rish</b>')
       .markup(Markup.inlineKeyboard([
@@ -76,7 +76,7 @@ async function controlWhatch(ctx) {
         [Markup.callbackButton('Ortga qaytish', 'Back1')]
       ])).HTML()
     ); break;
-    case 'Quruvchi': await ctx.replyWithPhoto(
+    case 'Quruvchilar': await ctx.replyWithPhoto(
       { source: './media/photoCategoriesWorker/quruvchi.jpg' },
       Extra.caption('<b>Ro\'yxatdan o\'tish yoki ro\'yxatni ko\'rish</b>')
       .markup(Markup.inlineKeyboard([
@@ -85,7 +85,7 @@ async function controlWhatch(ctx) {
         [Markup.callbackButton('Ortga qaytish', 'Back1')]
       ])).HTML()
     ); break;
-    case 'Sotuvchi': await ctx.replyWithPhoto(
+    case 'Sotuvchilar': await ctx.replyWithPhoto(
       { source: './media/photoCategoriesWorker/sotuvchi.jpg' },
       Extra.caption('<b>Ro\'yxatdan o\'tish yoki ro\'yxatni ko\'rish</b>')
       .markup(Markup.inlineKeyboard([
@@ -94,7 +94,7 @@ async function controlWhatch(ctx) {
         [Markup.callbackButton('Ortga qaytish', 'Back1')]
       ])).HTML()
     ); break;
-    case 'Makler': await ctx.replyWithPhoto(
+    case 'Maklerlar': await ctx.replyWithPhoto(
       { source: './media/photoCategoriesWorker/makler.jpg' },
       Extra.caption('<b>Ro\'yxatdan o\'tish yoki ro\'yxatni ko\'rish</b>')
       .markup(Markup.inlineKeyboard([
@@ -103,7 +103,7 @@ async function controlWhatch(ctx) {
         [Markup.callbackButton('Ortga qaytish', 'Back1')]
       ])).HTML()
     ); break;
-    case 'Nonvoy': await ctx.replyWithPhoto(
+    case 'Nonvoylar': await ctx.replyWithPhoto(
       { source: './media/photoCategoriesWorker/nonvoy.jpg' },
       Extra.caption('<b>Ro\'yxatdan o\'tish yoki ro\'yxatni ko\'rish</b>')
       .markup(Markup.inlineKeyboard([
@@ -112,7 +112,7 @@ async function controlWhatch(ctx) {
         [Markup.callbackButton('Ortga qaytish', 'Back1')]
       ])).HTML()
     ); break;
-    case 'Shafyor': await ctx.replyWithPhoto(
+    case 'Shafyorlar': await ctx.replyWithPhoto(
       { source: './media/photoCategoriesWorker/shafyor.jpg' },
       Extra.caption('<b>Ro\'yxatdan o\'tish yoki ro\'yxatni ko\'rish</b>')
       .markup(Markup.inlineKeyboard([
@@ -121,7 +121,7 @@ async function controlWhatch(ctx) {
         [Markup.callbackButton('Ortga qaytish', 'Back1')]
       ])).HTML()
     ); break;
-    case 'Sport triner': await ctx.replyWithPhoto(
+    case 'Sport trinerlar': await ctx.replyWithPhoto(
       { source: './media/photoCategoriesWorker/triner.jpg' },
       Extra.caption('<b>Ro\'yxatdan o\'tish yoki ro\'yxatni ko\'rish</b>')
       .markup(Markup.inlineKeyboard([
@@ -130,7 +130,7 @@ async function controlWhatch(ctx) {
         [Markup.callbackButton('Ortga qaytish', 'Back1')]
       ])).HTML()
     ); break;
-    case 'Durodgor': await ctx.replyWithPhoto(
+    case 'Elektriklar': await ctx.replyWithPhoto(
       { source: './media/photoCategoriesWorker/duradgor.jpg' },
       Extra.caption('<b>Ro\'yxatdan o\'tish yoki ro\'yxatni ko\'rish</b>')
       .markup(Markup.inlineKeyboard([
@@ -139,7 +139,7 @@ async function controlWhatch(ctx) {
         [Markup.callbackButton('Ortga qaytish', 'Back1')]
       ])).HTML()
     ); break;
-    case 'Mexanik': await ctx.replyWithPhoto(
+    case 'Mexaniklar': await ctx.replyWithPhoto(
       { source: './media/photoCategoriesWorker/mexanik.jpg' },
       Extra.caption('<b>Ro\'yxatdan o\'tish yoki ro\'yxatni ko\'rish</b>')
       .markup(Markup.inlineKeyboard([
@@ -148,7 +148,7 @@ async function controlWhatch(ctx) {
         [Markup.callbackButton('Ortga qaytish', 'Back1')]
       ])).HTML()
     ); break;
-    case 'Santexnik': await ctx.replyWithPhoto(
+    case 'Santexniklar': await ctx.replyWithPhoto(
       { source: './media/photoCategoriesWorker/santexnik.jpg' },
       Extra.caption('<b>Ro\'yxatdan o\'tish yoki ro\'yxatni ko\'rish</b>')
       .markup(Markup.inlineKeyboard([
@@ -157,7 +157,7 @@ async function controlWhatch(ctx) {
         [Markup.callbackButton('Ortga qaytish', 'Back1')]
       ])).HTML()
     ); break;
-    case 'Auto moychik': await ctx.replyWithPhoto(
+    case 'Auto moychiklar': await ctx.replyWithPhoto(
       { source: './media/photoCategoriesWorker/automoychik.jpg' },
       Extra.caption('<b><i>Auto moychik</i>Ro\'yxatdan o\'tish yoki ro\'yxatni ko\'rish</b>')
       .markup(Markup.inlineKeyboard([
@@ -167,7 +167,8 @@ async function controlWhatch(ctx) {
       ])).HTML()
     ); break;
   }
-  ctx.deleteMessage();
+  // quyidagi f(x) yozilgan xabartlarni tozalash uchun foydalaniladi..
+  // ctx.deleteMessage();
 }
 async function controlAddWorker(ctx){
   await ctx.replyWithHTML('Malumotlar joylansinmi?',
