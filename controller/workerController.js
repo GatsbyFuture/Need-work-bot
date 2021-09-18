@@ -7,7 +7,8 @@ async function controlStart(ctx) {
     Extra.caption('<b>Xush kelibsiz "Kafolat 99.9%" xizmatiga </b>')
       .markup(Markup.inlineKeyboard([
         [Markup.callbackButton('Ish kerak', 'need')],
-        [Markup.callbackButton('Ish bor', 'possible')]
+        [Markup.callbackButton('Ish bor', 'possible')],
+        [Markup.callbackButton('Komentariya qoldirish', 'comments')]
       ])).HTML()
   );
 }
