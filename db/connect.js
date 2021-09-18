@@ -104,13 +104,28 @@ const userDataBotSchema = new mongoose.Schema({
     default: Date.now
   }
 }, { collection: 'tb_bot_data' });
+// kelgan komentariyalarni saqlab turish...
+const commentsBotSchema = new mongoose.Schema({
+  chat_id: Number,
+  comment: String,
+  authorName:{
+    type: mongoose.Schema.Types.ObjectId,
+    ref:'tbBot'
+  },
+  dateEnter:{
+    type: Date,
+    default: Date.now
+  }
+},{collection: 'tb_comment_data'});
 // schemalardan obj olibb olamiz va export qilamiz..
 const tbUser = mongoose.model('tb_user_data', userDataSchema);
 const tbBot = mongoose.model('tb_bot_data', userDataBotSchema);
 const tbUserWork = mongoose.model('tb_userWork_data', userDataWork);
+const tbComment = mongoose.model('tb_comment_data', commentsBotSchema);
 // import qilib chiqarib qo'yamiz foydala
 module.exports = {
   tbUser,
   tbBot,
-  tbUserWork
+  tbUserWork,
+  tbComment
 };

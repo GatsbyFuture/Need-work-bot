@@ -9,6 +9,11 @@ const { controlWorks, controlWhatchWork, controlAddWork } = require('./controlle
 const { append, chackUser, dataAddWorker,
   chackStory, selectData, } = require('./modul/workerModule');
 const { chackUserWork, dataAddWork, selectDataWork, chackStoryWork } = require('./modul/workModule');
+const { shoose, admin } = require('./controller/adminController');
+const { old_work, active_work, all_work,
+  old_worker, active_worker, all_worker } = require('./modul/adminModue');
+const { commentWord, thinkCom } = require('./controller/commentController');
+const { commentAdd } = require('./modul/commentModule');
 require('dotenv').config({ path: './environment/parols.env' });
 const fs = require('fs');
 const bot = new Telegraf(process.env.BOT_TOKEN);
@@ -32,6 +37,11 @@ bot.action('need', async ctx => {
 bot.action('possible', async ctx => {
   await controlWorks(ctx);
 });
+// Komentariya qoldirish uchun..
+bot.action('comments', async ctx => {
+  await commentWord(ctx);
+  ctx.session.comments = 'ok';
+});
 // *****+++++*****
 // barcha ishchilar ro'yxat keylari...
 let keysWorker = ['Posida moychiklar', 'Enagalar', 'O\'qituvchilar',
@@ -43,6 +53,7 @@ let keysWork = ["Posida moychikga ish", "Enagaga ish bor", 'O\'qituvchiga ish bo
   'Sotuvchiga ish bor', 'Ijaraga uy bor', 'Nonvoyga ish bor',
   'Shafyorga ish bor', 'Sport trinerga ish bor', 'Electrikga ish bor',
   'Mexanikka ish bor', 'Santexnikka ish bor', 'Auto moychikka ish bor'];
+let admin_key = { key: 'Jop13_2001' };
 // no odatiy so'zlar uchun baza...
 let answer = ['Salom', 'salom', 'Assalomu alaykum', 'qaleysiz', 'hormang',
   'SALOM', 'ASSALOMU ALAYKUM'];
@@ -97,9 +108,31 @@ bot.on('message', async ctx => {
         ctx.session.DataSkil++; break;
     }
   }
+  if (admin_key.key == ctx.message.text) {
+    await shoose(ctx);
+    ctx.deleteMessage();
+  }
   if (answer.includes(ctx.message.text)) {
     ctx.replyWithHTML('Assalomu alaykum.');
   }
+  if (ctx.session.comments == 'ok') {
+    await thinkCom(ctx);
+    ctx.session.commentText = ctx.message.text;
+    // ctx.reply(ctx.message.text);
+  }
+});
+// komentariyani bazaga saqlash uchun..
+bot.action('cancel', async ctx => {
+  await controlStart(ctx);
+  ctx.replyWithHTML('<u>Malumot bekor qilindi..</u>');
+  ctx.session.comments = undefined;
+});
+// komentariyani saqlash uchun..
+bot.action('enter', async ctx => {
+  // console.log(typeof(ctx.message.from.username));
+  await commentAdd(ctx.update.callback_query.from.id, ctx.session.commentText);
+  ctx.replyWithHTML('<b>Komentariya joylandi!</b><i> \n E\'tibor uchun raxmat</i>');
+  ctx.session.comments = undefined;
 });
 // umummiy ishchilar ro'yxatiga qaytish functions...
 bot.action('Back1', async ctx => {
@@ -108,6 +141,58 @@ bot.action('Back1', async ctx => {
 // umumiy ishlar ro'yxatiga qaytish uchun functions...
 bot.action('Back2', async ctx => {
   await controlWorks(ctx);
+});
+// asosiy categoriesga qaytish...
+bot.action('Back_story', async ctx => {
+  await controlStart(ctx);
+});
+// admin kategoriyasiga qaytish...
+bot.action('Back_story1', async ctx => {
+  await shoose(ctx);
+});
+// status false bo'lgan statistikani ko'rishi uchun...
+bot.action('w1', async ctx => {
+  await admin(ctx);
+  ctx.session.typeWork = 'w1';
+});
+// status true bo'lgan statistikani ko'rishi uchun...
+bot.action('w2', async ctx => {
+  await admin(ctx);
+  ctx.session.typeWork = 'w2';
+});
+// statistikani bilish uchun controllerga murojaat...
+bot.action('all', async ctx => {
+  if (ctx.session.typeWork == 'w1') {
+    const result_data = await all_work();
+    ctx.reply('foydalanganlar soni : ' + result_data);
+    ctx.session.typeWork == undefined;
+  } else {
+    const result_data = await all_worker();
+    ctx.reply('foydalanganlar soni : ' + result_data);
+    ctx.session.typeWork == undefined;
+  }
+});
+bot.action('old', async ctx => {
+  if (ctx.session.typeWork == 'w1') {
+    const result_data = await old_work();
+    ctx.reply('foydalanganlar soni : ' + result_data);
+    ctx.session.typeWork == undefined;
+  } else {
+    const result_data = await old_worker();
+    ctx.reply('foydalanganlar soni : ' + result_data);
+    ctx.session.typeWork == undefined;
+  }
+});
+bot.action('active', async ctx => {
+  if (ctx.session.typeWork == 'w1') {
+    const result_data = await active_work();
+    ctx.reply('foydalanganlar soni : ' + result_data);
+    ctx.session.typeWork == undefined;
+  } else {
+    const result_data = await active_worker();
+    ctx.reply('foydalanganlar soni : ' + result_data);
+    ctx.session.typeWork == undefined;
+  }
 });
 // ro'yxatga olish jarayoni...
 // Foydalanuvchilarni ro'yxatini chiqarish yoki ro'yxatga olish...
@@ -144,7 +229,6 @@ bot.action('rgWork', async ctx => {
     ctx.replyWithHTML('Tekshirib ko\'ring siz ro\'yxatda borsiz!😎');
   }
 });
-
 // bazaga ishchilar ro'yxatiini joylash...
 bot.action('go1', async ctx => {
   // console.log(ctx.update.callback_query.from.id);
@@ -229,7 +313,7 @@ bot.action('workers', async ctx => {
     for (let key in allData) {
       let person = counter + " - F.I.O: ' " + allData[key].firstName +
         " " + allData[key].name +
-        " ' / Yosh: " + allData[key].age + "\n" +
+        " ' \n Yosh: " + allData[key].age + "\n" +
         "Manzil: " + allData[key].address + "\n" +
         "Tel : " + allData[key].telNumber;
       await ctx.reply(person);
