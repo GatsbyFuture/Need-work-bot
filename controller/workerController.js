@@ -8,14 +8,9 @@ async function controlStart(ctx) {
         Extra.caption('<b>Xush kelibsiz "Kafolat 99.9%" xizmatiga </b>')
             .markup(
                 Markup.inlineKeyboard([
-                    [Markup.callbackButton("Ish kerak", "need")],
-                    [Markup.callbackButton("Ish bor", "possible")],
-                    [
-                        Markup.callbackButton(
-                            "Komentariya qoldirish",
-                            "comments"
-                        ),
-                    ],
+                    [Markup.callbackButton("Ish qidirish", "possible")],
+                    [Markup.callbackButton("Ishchi qidirish", "need")],
+                    [Markup.callbackButton("Izoh qoldirish", "comments")],
                 ])
             )
             .HTML()
@@ -26,11 +21,11 @@ async function controlWorkers(ctx) {
     return await ctx.replyWithHTML(
         "<i><b>Umumiy ishchilar ro'yxati marhamat</b></i>",
         Markup.keyboard([
-            ["Posida moychiklar", "Enagalar", "O'qituvchilar"],
-            ["Farroshlar", "Programistlar", "Quruvchilar"],
-            ["Sotuvchilar", "Maklerlar", "Nonvoylar"],
-            ["Shafyorlar", "Sport trinerlar", "Elektriklar"],
-            ["Mexaniklar", "Santexniklar", "Auto moychiklar"],
+            ["Idish yuvuvchilar", "Enagalar", "O'qituvchilar"],
+            ["Farroshlar", "Dasturchilar", "Quruvchilar"],
+            ["Sotuvchilar", "Maklerlar", "Novvoylar"],
+            ["Haydovchilar", "Sport trinerlar", "Elektriklar"],
+            ["Mexaniklar", "Santexniklar", "Auto moykachilar"],
             ["Asosiy menyuga qaydish"],
         ])
             .oneTime()
@@ -42,7 +37,7 @@ async function controlWorkers(ctx) {
 async function controlWhatch(ctx) {
     let shoose = ctx.message.text;
     switch (shoose) {
-        case "Posida moychiklar":
+        case "Idish yuvuvchilar":
             await ctx.replyWithPhoto(
                 { source: "./media/photoCategoriesWorker/posidamoy.jpg" },
                 Extra.caption("<b>Ro'yxatdan o'tish yoki ro'yxatni ko'rish</b>")
@@ -118,7 +113,7 @@ async function controlWhatch(ctx) {
                     .HTML()
             );
             break;
-        case "Programistlar":
+        case "Dasturchilar":
             await ctx.replyWithPhoto(
                 { source: "./media/photoCategoriesWorker/pragramist.jpg" },
                 Extra.caption("<b>Ro'yxatdan o'tish yoki ro'yxatni ko'rish</b>")
@@ -127,7 +122,7 @@ async function controlWhatch(ctx) {
                             [
                                 Markup.callbackButton(
                                     "Barcha ishchilar",
-                                    "workers"
+                                    "works"
                                 ),
                                 Markup.callbackButton("Nomzodni qo'yish", "rg"),
                             ],
@@ -148,7 +143,10 @@ async function controlWhatch(ctx) {
                                     "Barcha ishchilar",
                                     "workers"
                                 ),
-                                Markup.callbackButton("Nomzodni qo'yish", "rg"),
+                                Markup.callbackButton(
+                                    "Nomzodni qo'yish",
+                                    "rgWork"
+                                ),
                             ],
                             [Markup.callbackButton("Ortga qaytish", "Back1")],
                         ])
@@ -194,7 +192,7 @@ async function controlWhatch(ctx) {
                     .HTML()
             );
             break;
-        case "Nonvoylar":
+        case "Novvoylar":
             await ctx.replyWithPhoto(
                 { source: "./media/photoCategoriesWorker/nonvoy.jpg" },
                 Extra.caption("<b>Ro'yxatdan o'tish yoki ro'yxatni ko'rish</b>")
@@ -213,7 +211,7 @@ async function controlWhatch(ctx) {
                     .HTML()
             );
             break;
-        case "Shafyorlar":
+        case "Haydovchilar":
             await ctx.replyWithPhoto(
                 { source: "./media/photoCategoriesWorker/shafyor.jpg" },
                 Extra.caption("<b>Ro'yxatdan o'tish yoki ro'yxatni ko'rish</b>")
@@ -308,7 +306,7 @@ async function controlWhatch(ctx) {
                     .HTML()
             );
             break;
-        case "Auto moychiklar":
+        case "Auto moykachilar":
             await ctx.replyWithPhoto(
                 { source: "./media/photoCategoriesWorker/automoychik.jpg" },
                 Extra.caption(
