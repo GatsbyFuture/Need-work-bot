@@ -200,6 +200,7 @@ bot.on("message", async (ctx) => {
             case -1:
                 const chackNumber = await isItNumber(ctx.message.text);
                 if (chackNumber.result) {
+                    console.log(chackNumber.result);
                     ctx.session.telNomer = chackNumber.data;
                     await controlAddWork(ctx);
                     ctx.session.DataSkil++;
