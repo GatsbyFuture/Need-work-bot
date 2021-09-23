@@ -1,19 +1,19 @@
 {
-  "name": "Kafolat_tg_bot",
-  "version": "1.0.0",
-  "description": "Bu bot ishsizlarga ish topishda , ishi borlarga ishchi topishga yordam beradi",
-  "main": "index.js",
-  "scripts": {
-    "test": "jwt",
-    "start": "nodemon index.js"
-  },
-  "keywords": [],
-  "author": "Raxmatov Eldorbek",
-  "license": "ISC",
-  "dependencies": {
-    "dotenv": "^10.0.0",
-    "mongoose": "^5.13.7",
-    "nodemon": "^2.0.12",
-    "telegraf": "^3.38.0"
-  }
+    "name": "Kafolat_tg_bot",
+    "version": "1.7.0",
+    "description": "Bu bot ishsizlarga ish topishda , ishi borlarga ishchi topishga yordam beradi",
+    "main": "index.js",
+    "scripts": {
+        "test": "jwt",
+        "start": "nodemon index.js"
+    },
+    "keywords": [],
+    "author": "Raxmatov Eldorbek",
+    "license": "ISC",
+    "dependencies": {
+        "dotenv": "^10.0.0",
+        "mongoose": "^5.13.7",
+        "nodemon": "^2.0.12",
+        "telegraf": "^3.38.0"
+    }
 }
