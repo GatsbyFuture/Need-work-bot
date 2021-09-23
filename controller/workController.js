@@ -7,18 +7,22 @@ async function controlWorks(ctx) {
     return await ctx.replyWithHTML(
         "<i><b>Umumiy ishlar ro'yxati marhamat</b>😊</i>",
         Markup.keyboard([
-            ["Posida moychikga ish", "Enagaga ish bor", "O'qituvchiga ish bor"],
-            ["Farroshga ish bor", "Programistga ish bor", "Quruvchiga ish bor"],
-            ["Sotuvchiga ish bor", "Ijaraga uy bor", "Nonvoyga ish bor"],
+            ["Idish yuvuvchiga ish", "Enagaga ish bor", "O'qituvchiga ish bor"],
             [
-                "Shafyorga ish bor",
+                "Farroshga ish bor",
+                "Dasturchilarga ish bor",
+                "Quruvchiga ish bor",
+            ],
+            ["Sotuvchiga ish bor", "Ijaraga uy bor", "Novvoylar ish bor"],
+            [
+                "Haydovchiga ish bor",
                 "Sport trinerga ish bor",
                 "Electrikga ish bor",
             ],
             [
                 "Mexanikka ish bor",
                 "Santexnikka ish bor",
-                "Auto moychikka ish bor",
+                "Auto moykachiga ish bor",
             ],
             ["Asosiy menyuga qaydish"],
         ])
@@ -31,7 +35,7 @@ async function controlWorks(ctx) {
 async function controlWhatchWork(ctx) {
     let shoose = ctx.message.text;
     switch (shoose) {
-        case "Posida moychikga ish":
+        case "Idish yuvuvchiga ish":
             await ctx.replyWithPhoto(
                 {
                     source: "./media/photoCategoriesWork/posidaMoychikgaIsh.jpg",
@@ -45,8 +49,8 @@ async function controlWhatchWork(ctx) {
                                     "works"
                                 ),
                                 Markup.callbackButton(
-                                    "ishni taklif etish",
-                                    "rgWork"
+                                    "Ish so'rab murojaat",
+                                    "rg"
                                 ),
                             ],
                             [Markup.callbackButton("Ortga qaytish", "Back2")],
@@ -67,8 +71,8 @@ async function controlWhatchWork(ctx) {
                                     "works"
                                 ),
                                 Markup.callbackButton(
-                                    "ishni taklif etish",
-                                    "rgWork"
+                                    "Ish so'rab murojaat",
+                                    "rg"
                                 ),
                             ],
                             [Markup.callbackButton("Ortga qaytish", "Back2")],
@@ -89,8 +93,8 @@ async function controlWhatchWork(ctx) {
                                     "works"
                                 ),
                                 Markup.callbackButton(
-                                    "ishni taklif etish",
-                                    "rgWork"
+                                    "Ish so'rab murojaat",
+                                    "rg"
                                 ),
                             ],
                             [Markup.callbackButton("Ortga qaytish", "Back2")],
@@ -111,8 +115,8 @@ async function controlWhatchWork(ctx) {
                                     "works"
                                 ),
                                 Markup.callbackButton(
-                                    "ishni taklif etish",
-                                    "rgWork"
+                                    "Ish so'rab murojaat",
+                                    "rg"
                                 ),
                             ],
                             [Markup.callbackButton("Ortga qaytish", "Back2")],
@@ -121,7 +125,7 @@ async function controlWhatchWork(ctx) {
                     .HTML()
             );
             break;
-        case "Programistga ish bor":
+        case "Dasturchilarga ish bor":
             await ctx.replyWithPhoto(
                 { source: "media/photoCategoriesWork/dasturchi.jpg" },
                 Extra.caption("<b>Ro'yxatdan o'tish yoki ro'yxatni ko'rish</b>")
@@ -133,8 +137,8 @@ async function controlWhatchWork(ctx) {
                                     "works"
                                 ),
                                 Markup.callbackButton(
-                                    "ishni taklif etish",
-                                    "rgWork"
+                                    "Ish so'rab murojaat",
+                                    "rg"
                                 ),
                             ],
                             [Markup.callbackButton("Ortga qaytish", "Back2")],
@@ -155,8 +159,8 @@ async function controlWhatchWork(ctx) {
                                     "works"
                                 ),
                                 Markup.callbackButton(
-                                    "ishni taklif etish",
-                                    "rgWork"
+                                    "Ish so'rab murojaat",
+                                    "rg"
                                 ),
                             ],
                             [Markup.callbackButton("Ortga qaytish", "Back2")],
@@ -177,8 +181,8 @@ async function controlWhatchWork(ctx) {
                                     "works"
                                 ),
                                 Markup.callbackButton(
-                                    "ishni taklif etish",
-                                    "rgWork"
+                                    "Ish so'rab murojaat",
+                                    "rg"
                                 ),
                             ],
                             [Markup.callbackButton("Ortga qaytish", "Back2")],
@@ -199,8 +203,8 @@ async function controlWhatchWork(ctx) {
                                     "works"
                                 ),
                                 Markup.callbackButton(
-                                    "ishni taklif etish",
-                                    "rgWork"
+                                    "Ish so'rab murojaat",
+                                    "rg"
                                 ),
                             ],
                             [Markup.callbackButton("Ortga qaytish", "Back2")],
@@ -209,7 +213,7 @@ async function controlWhatchWork(ctx) {
                     .HTML()
             );
             break;
-        case "Nonvoyga ish bor":
+        case "Novvoylar ish bor":
             await ctx.replyWithPhoto(
                 { source: "media/photoCategoriesWork/nonRasmi.jpg" },
                 Extra.caption("<b>Ro'yxatdan o'tish yoki ro'yxatni ko'rish</b>")
@@ -221,8 +225,8 @@ async function controlWhatchWork(ctx) {
                                     "works"
                                 ),
                                 Markup.callbackButton(
-                                    "ishni taklif etish",
-                                    "rgWork"
+                                    "Ish so'rab murojaat",
+                                    "rg"
                                 ),
                             ],
                             [Markup.callbackButton("Ortga qaytish", "Back2")],
@@ -231,7 +235,7 @@ async function controlWhatchWork(ctx) {
                     .HTML()
             );
             break;
-        case "Shafyorga ish bor":
+        case "Haydovchiga ish bor":
             await ctx.replyWithPhoto(
                 { source: "media/photoCategoriesWork/haydovchi.jpg" },
                 Extra.caption("<b>Ro'yxatdan o'tish yoki ro'yxatni ko'rish</b>")
@@ -243,8 +247,8 @@ async function controlWhatchWork(ctx) {
                                     "works"
                                 ),
                                 Markup.callbackButton(
-                                    "ishni taklif etish",
-                                    "rgWork"
+                                    "Ish so'rab murojaat",
+                                    "rg"
                                 ),
                             ],
                             [Markup.callbackButton("Ortga qaytish", "Back2")],
@@ -265,8 +269,8 @@ async function controlWhatchWork(ctx) {
                                     "works"
                                 ),
                                 Markup.callbackButton(
-                                    "ishni taklif etish",
-                                    "rgWork"
+                                    "Ish so'rab murojaat",
+                                    "rg"
                                 ),
                             ],
                             [Markup.callbackButton("Ortga qaytish", "Back2")],
@@ -287,8 +291,8 @@ async function controlWhatchWork(ctx) {
                                     "works"
                                 ),
                                 Markup.callbackButton(
-                                    "ishni taklif etish",
-                                    "rgWork"
+                                    "Ish so'rab murojaat",
+                                    "rg"
                                 ),
                             ],
                             [Markup.callbackButton("Ortga qaytish", "Back2")],
@@ -309,8 +313,8 @@ async function controlWhatchWork(ctx) {
                                     "works"
                                 ),
                                 Markup.callbackButton(
-                                    "ishni taklif etish",
-                                    "rgWork"
+                                    "Ish so'rab murojaat",
+                                    "rg"
                                 ),
                             ],
                             [Markup.callbackButton("Ortga qaytish", "Back2")],
@@ -331,8 +335,8 @@ async function controlWhatchWork(ctx) {
                                     "works"
                                 ),
                                 Markup.callbackButton(
-                                    "ishni taklif etish",
-                                    "rgWork"
+                                    "Ish so'rab murojaat",
+                                    "rg"
                                 ),
                             ],
                             [Markup.callbackButton("Ortga qaytish", "Back2")],
@@ -341,7 +345,7 @@ async function controlWhatchWork(ctx) {
                     .HTML()
             );
             break;
-        case "Auto moychikka ish bor":
+        case "Auto moykachiga ish bor":
             await ctx.replyWithPhoto(
                 { source: "media/photoCategoriesWork/moychik.jpg" },
                 Extra.caption(
@@ -355,11 +359,11 @@ async function controlWhatchWork(ctx) {
                                     "works"
                                 ),
                                 Markup.callbackButton(
-                                    "ishni taklif etish",
-                                    "rgWork"
+                                    "Ish so'rab murojaat",
+                                    "rg"
                                 ),
                             ],
-                            [Markup.callbackButton("Ortga qaytish", "Back2")],
+                            [Markup.callbackButton("Orqaga qaytish", "Back2")],
                         ])
                     )
                     .HTML()
@@ -371,11 +375,11 @@ async function controlWhatchWork(ctx) {
                 Extra.caption('<b>Xush kelibsiz "Kafolat 99.9%" xizmatiga </b>')
                     .markup(
                         Markup.inlineKeyboard([
-                            [Markup.callbackButton("Ish kerak", "need")],
-                            [Markup.callbackButton("Ish bor", "possible")],
+                            [Markup.callbackButton("Ish qidirish", "possible")],
+                            [Markup.callbackButton("Ishchi qidirish", "need")],
                             [
                                 Markup.callbackButton(
-                                    "Komentariya qoldirish",
+                                    "Izoh qoldirish",
                                     "comments"
                                 ),
                             ],
