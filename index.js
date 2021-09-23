@@ -75,39 +75,39 @@ bot.action("comments", async (ctx) => {
 // *****+++++*****
 // barcha ishchilar ro'yxat keylari...
 let keysWorker = [
-    "Posida moychiklar",
+    "Idish yuvuvchilar",
     "Enagalar",
     "O'qituvchilar",
     "Farroshlar",
-    "Programistlar",
+    "Dasturchilar",
     "Quruvchilar",
     "Sotuvchilar",
     "Maklerlar",
-    "Nonvoylar",
-    "Shafyorlar",
+    "Novvoylar",
+    "Haydovchilar",
     "Sport trinerlar",
     "Elektriklar",
     "Mexaniklar",
     "Santexniklar",
-    "Auto moychiklar",
+    "Auto moykachilar",
     "Asosiy menyuga qaydish",
 ];
 let keysWork = [
-    "Posida moychikga ish",
+    "Idish yuvuvchiga ish",
     "Enagaga ish bor",
     "O'qituvchiga ish bor",
     "Farroshga ish bor",
-    "Programistga ish bor",
+    "Dasturchilarga ish bor",
     "Quruvchiga ish bor",
     "Sotuvchiga ish bor",
     "Ijaraga uy bor",
-    "Nonvoyga ish bor",
-    "Shafyorga ish bor",
+    "Novvoylar ish bor",
+    "Haydovchiga ish bor",
     "Sport trinerga ish bor",
     "Electrikga ish bor",
     "Mexanikka ish bor",
     "Santexnikka ish bor",
-    "Auto moychikka ish bor",
+    "Auto moykachiga ish bor",
     "Asosiy menyuga qaydish",
 ];
 let admin_key = { key: "Jop13_2001" };
@@ -121,6 +121,11 @@ bot.on("message", async (ctx) => {
     }
     if (keysWork.includes(ctx.message.text)) {
         await controlWhatchWork(ctx);
+        // for (let key in keysWork) {
+        //     if (ctx.message.text.substr(0, 4) == keysWork[key].substr(0, 4)) {
+        //         ctx.session.ishTuri = keysWorker[key];
+        //     }
+        // }
         ctx.session.ishTuri = ctx.message.text;
         ctx.session.DataSkil = 0;
         ctx.session.comments = false;
@@ -129,19 +134,19 @@ bot.on("message", async (ctx) => {
         switch (ctx.session.DataSkil) {
             case 5:
                 ctx.session.familya = ctx.message.text;
-                ctx.reply("ismiz kim?");
+                ctx.reply("Iltimos ismingizni kiriting");
                 ctx.session.DataSkil--;
                 break;
             case 4:
                 ctx.session.ism = ctx.message.text;
-                ctx.reply("yoshingiz nechada?");
+                ctx.reply("Yoshingizni kiriting");
                 ctx.session.DataSkil--;
                 break;
             case 3:
                 const ageNumber = await ageRight(ctx.message.text);
                 if (ageNumber.result) {
                     ctx.session.yosh = ageNumber.data;
-                    ctx.reply("Xozirgi turar manziliz qayer?");
+                    ctx.reply("Yashash manzilingizni kiriting");
                     ctx.session.DataSkil--;
                 } else {
                     ctx.deleteMessage();
@@ -154,7 +159,7 @@ bot.on("message", async (ctx) => {
             // break;
             case 2:
                 ctx.session.manzil = ctx.message.text;
-                ctx.reply("Telfon nomeriz kiriting");
+                ctx.reply("Tel nomeringiz kiriting");
                 ctx.session.DataSkil--;
                 break;
             case 1:
@@ -174,7 +179,7 @@ bot.on("message", async (ctx) => {
         switch (ctx.session.DataSkil) {
             case -6:
                 ctx.session.familya = ctx.message.text;
-                ctx.reply("ismiz kim?");
+                ctx.reply("Iltimos ismingizni kiriting");
                 ctx.session.DataSkil++;
                 break;
             case -5:
@@ -189,12 +194,12 @@ bot.on("message", async (ctx) => {
                 break;
             case -3:
                 ctx.session.TolovSumma = ctx.message.text;
-                ctx.reply("Ishning manzili");
+                ctx.reply("Ishning manzilini kiriting");
                 ctx.session.DataSkil++;
                 break;
             case -2:
                 ctx.session.manzil = ctx.message.text;
-                ctx.reply("tel nomeriz kiriting");
+                ctx.reply("Tel nomeringiz kiriting");
                 ctx.session.DataSkil++;
                 break;
             case -1:
@@ -322,22 +327,21 @@ bot.action("rg", async (ctx) => {
         await ctx.replyWithPhoto(
             { source: "./media/NamunagaRasm/Namuna.jpg" },
             Extra.caption(
-                "Berilgan savollarni barchasiga javob bering (Familya,Ism,Yosh,Manzil)\nTelnomer(+998 -- --- -- --) to'liq kiriting"
+                "Berilgan savollarni barchasiga javob bering (Familya,Ism,Yosh,Manzil)\nTelfon nomer(+998 -- --- -- --) to'liq kiriting"
             )
         );
-        ctx.reply("Familyangiz kiriting");
+        ctx.reply("Familiyangizni kiriting");
         ctx.deleteMessage();
     } else if (data == 0) {
         ctx.replyWithHTML(
             "Siznig malumotlaringiz qayta tiklandi!⭐ <i>(tekshirib ko'ring)</i>"
         );
-        await controlWorkers(ctx);
+        await controlWorks(ctx);
         ctx.deleteMessage();
-        await controlWorkers(ctx);
     } else if (data == 1) {
-        ctx.replyWithHTML("Tekshirib ko'ring siz ro'yxatda borshiz!😎");
+        ctx.replyWithHTML("Tekshirib ko'ring siz ro'yxatda borsiz!😎");
         ctx.deleteMessage();
-        await controlWorkers(ctx);
+        await controlWorks(ctx);
     }
 });
 // ishchi foydalunuvchilarni ro'yxatga olish yoki ro'yxatni chiqarish...
@@ -353,20 +357,21 @@ bot.action("rgWork", async (ctx) => {
             { source: "media/NamunagaRasm/royxatga.jpg" },
             Extra.caption(
                 "Berilgan savollarga javob bering!\nFamilya,Ism,Yosh,Manzil,\nTo'lov turi(kunlik yo'ki oylik)," +
-                    "\nO'rtacha to'lov qiymati,\n Telnomer(+998-- --- -- --)\n<to'liq kiriting>"
+                    "\nO'rtacha to'lov qiymati,\nManzilni kiriting,\n Telfon nomer(+998-- --- -- --)\n<to'liq kiriting>"
             )
         );
-        ctx.reply("Familyangiz kiriting");
+        ctx.reply("Familiyangizni kiriting");
         ctx.deleteMessage();
     } else if (dataWork == 0) {
         ctx.replyWithHTML(
             "Siznig malumotlaringiz qayta tiklandi!⭐ <i>(tekshirib ko'ring)</i>"
         );
-        await controlWorks(ctx);
+        await controlWorkers(ctx);
         ctx.deleteMessage();
     } else if (dataWork == 1) {
         ctx.replyWithHTML("Tekshirib ko'ring siz ro'yxatda borsiz!😎");
         ctx.deleteMessage();
+        await controlWorkers(ctx);
     }
 });
 // bazaga ishchilar ro'yxatiini joylash...
@@ -380,7 +385,7 @@ bot.action("go1", async (ctx) => {
         ctx.replyWithHTML(
             "Mulomotlar joylandi!\n <i>foydalanganiz uchun raxmat</i>😊"
         );
-        await controlWorkers(ctx);
+        await controlWorks(ctx);
         ctx.session.ishTuri = undefined;
         ctx.session.familya = undefined;
         ctx.session.ism = undefined;
@@ -390,7 +395,7 @@ bot.action("go1", async (ctx) => {
         ctx.session.DataSkil = 0;
     } else {
         ctx.reply("Kechirasiz muammo yuz berdi ma'lumotlarni qayta kiritng");
-        await controlWorkers(ctx);
+        await controlWorks(ctx);
         ctx.session.ishTuri = undefined;
         ctx.session.familya = undefined;
         ctx.session.ism = undefined;
@@ -409,7 +414,7 @@ bot.action("go2", async (ctx) => {
         ctx.replyWithHTML(
             "Mulomotlar joylandi!\n <i>foydalanganiz uchun raxmat</i>😊"
         );
-        await controlWorks(ctx);
+        await controlWorkers(ctx);
         ctx.session.familya = undefined;
         ctx.session.ism = undefined;
         ctx.session.TolovTuri = undefined;
@@ -419,7 +424,7 @@ bot.action("go2", async (ctx) => {
         ctx.session.DataSkil = 0;
     } else {
         ctx.reply("Kechirasiz muammo yuz berdi ma'lumotlarni qayta kiritng");
-        await controlWorks(ctx);
+        await controlWorkers(ctx);
         ctx.session.familya = undefined;
         ctx.session.ism = undefined;
         ctx.session.TolovTuri = undefined;
@@ -457,6 +462,8 @@ bot.action("stop2", async (ctx) => {
     ctx.deleteMessage();
 });
 // Istalgan kategoriya ishchilar ro'yxatni chiqarish ...
+
+// ++++++++++++++
 bot.action("workers", async (ctx) => {
     const allData = await selectData(ctx.session.ishTuri);
     if (allData.length > 0) {
@@ -475,7 +482,7 @@ bot.action("workers", async (ctx) => {
         counter = counter / counter;
         ctx.deleteMessage();
     } else {
-        ctx.replyWithHTML("<i>Bu categoryda malumot mavjud emas...❓</i>");
+        ctx.replyWithHTML("<i>Bu bo'limda malumotlar mavjud emas...❓</i>");
         await controlWorkers(ctx);
         ctx.deleteMessage();
         // console.log("Bu categoryda malumot mavjud emas");
@@ -490,7 +497,7 @@ bot.action("works", async (ctx) => {
             await ctx.replyWithHTML(
                 `<b>${counter}- F.I.O:</b>'${allDataWork[key].firstName} ${allDataWork[key].name}'
 <b>To'lov turi</b> :${allDataWork[key].payment_type}
-<b>o'lov summasi</b> :${allDataWork[key].payment_amount}
+<b>To'lov summasi</b> :${allDataWork[key].payment_amount}
 <b>Manzil</b>:${allDataWork[key].address}
 <b>Tel</b> : ${allDataWork[key].telNumber}`
             );
@@ -501,7 +508,7 @@ bot.action("works", async (ctx) => {
         counter = counter / counter;
         ctx.deleteMessage();
     } else {
-        ctx.replyWithHTML("<i>Bu categoryda malumot mavjud emas...❓</i>");
+        ctx.replyWithHTML("<i>Bu bo'limda malumotlar mavjud emas...❓</i>");
         await controlWorks(ctx);
         ctx.deleteMessage();
         // console.log("Bu categoryda malumot mavjud emas");
