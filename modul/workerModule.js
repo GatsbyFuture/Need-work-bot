@@ -54,9 +54,13 @@ async function dataAddWorker(Data, Id) {
             name: Data.ism,
             age: Data.yosh,
             address: Data.manzil,
-            chat_id: Id.id,
+            // murojaat vaqti...
+            workTime: Data.ishVaqti,
             telNumber: Data.telNomer.toString(),
+            // o'zi haqida malumotlar...
+            goal: Data.maqsad,
             workType: Data.ishTuri,
+            chat_id: Id.id,
         });
         await userplace.save();
         await tbBot.updateOne(
@@ -79,9 +83,9 @@ async function selectData(TypeWorker) {
         return await tbUser
             .find()
             .and([{ status: true }, { workType: TypeWorker }])
-            .select("firstName name age address telNumber -_id");
+            .select("firstName name age address telNumber workTime goal -_id");
     } catch (ex) {
-        console.log("Hujjatlarni olishda xatolik :" + ex);
+        console.log("Userlarni Hujjatlarni olishda xatolik :" + ex);
     }
 }
 // tekshirish eskilarni tozlash...
@@ -104,7 +108,7 @@ async function chackStory() {
             }
         }
     } catch (ex) {
-        console.log("malumot yangilanmadi: " + ex);
+        console.log("Malumot yangilanmadi: " + ex);
     }
 }
 module.exports = {
