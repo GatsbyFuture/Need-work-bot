@@ -5,7 +5,7 @@ const { controlStart } = require("./workerController");
 // asosiy ish kategariyalari..
 async function controlWorks(ctx) {
     return await ctx.replyWithHTML(
-        "<i><b>Umumiy ishlar ro'yxati marhamat</b>😊</i>",
+        "<i><b>Umumiy ishlar ro'yxati marhamat</b> 📑</i>",
         Markup.keyboard([
             ["Idish yuvuvchiga ish", "Enagaga ish bor", "O'qituvchiga ish bor"],
             [
@@ -24,7 +24,7 @@ async function controlWorks(ctx) {
                 "Santexnikka ish bor",
                 "Auto moykachiga ish bor",
             ],
-            ["Asosiy menyuga qaydish"],
+            ["Asosiy menyuga qaytish"],
         ])
             .oneTime()
             .resize()
@@ -45,11 +45,11 @@ async function controlWhatchWork(ctx) {
                         Markup.inlineKeyboard([
                             [
                                 Markup.callbackButton(
-                                    "Barcha ishlar ro'yxati",
+                                    "Barcha ishlar 📈",
                                     "works"
                                 ),
                                 Markup.callbackButton(
-                                    "Ish so'rab murojaat",
+                                    "Ish so'rab murojaat 🖋",
                                     "rg"
                                 ),
                             ],
@@ -67,11 +67,11 @@ async function controlWhatchWork(ctx) {
                         Markup.inlineKeyboard([
                             [
                                 Markup.callbackButton(
-                                    "Barcha ishlar ro'yxati",
+                                    "Barcha ishlar 📈",
                                     "works"
                                 ),
                                 Markup.callbackButton(
-                                    "Ish so'rab murojaat",
+                                    "Ish so'rab murojaat 🖋",
                                     "rg"
                                 ),
                             ],
@@ -89,11 +89,11 @@ async function controlWhatchWork(ctx) {
                         Markup.inlineKeyboard([
                             [
                                 Markup.callbackButton(
-                                    "Barcha ishlar ro'yxati",
+                                    "Barcha ishlar 📈",
                                     "works"
                                 ),
                                 Markup.callbackButton(
-                                    "Ish so'rab murojaat",
+                                    "Ish so'rab murojaat 🖋",
                                     "rg"
                                 ),
                             ],
@@ -111,11 +111,11 @@ async function controlWhatchWork(ctx) {
                         Markup.inlineKeyboard([
                             [
                                 Markup.callbackButton(
-                                    "Barcha ishlar ro'yxati",
+                                    "Barcha ishlar 📈",
                                     "works"
                                 ),
                                 Markup.callbackButton(
-                                    "Ish so'rab murojaat",
+                                    "Ish so'rab murojaat 🖋",
                                     "rg"
                                 ),
                             ],
@@ -133,11 +133,11 @@ async function controlWhatchWork(ctx) {
                         Markup.inlineKeyboard([
                             [
                                 Markup.callbackButton(
-                                    "Barcha ishlar ro'yxati",
+                                    "Barcha ishlar 📈",
                                     "works"
                                 ),
                                 Markup.callbackButton(
-                                    "Ish so'rab murojaat",
+                                    "Ish so'rab murojaat 🖋",
                                     "rg"
                                 ),
                             ],
@@ -155,11 +155,11 @@ async function controlWhatchWork(ctx) {
                         Markup.inlineKeyboard([
                             [
                                 Markup.callbackButton(
-                                    "Barcha ishlar ro'yxati",
+                                    "Barcha ishlar 📈",
                                     "works"
                                 ),
                                 Markup.callbackButton(
-                                    "Ish so'rab murojaat",
+                                    "Ish so'rab murojaat 🖋",
                                     "rg"
                                 ),
                             ],
@@ -177,11 +177,11 @@ async function controlWhatchWork(ctx) {
                         Markup.inlineKeyboard([
                             [
                                 Markup.callbackButton(
-                                    "Barcha ishlar ro'yxati",
+                                    "Barcha ishlar 📈",
                                     "works"
                                 ),
                                 Markup.callbackButton(
-                                    "Ish so'rab murojaat",
+                                    "Ish so'rab murojaat 🖋",
                                     "rg"
                                 ),
                             ],
@@ -199,11 +199,11 @@ async function controlWhatchWork(ctx) {
                         Markup.inlineKeyboard([
                             [
                                 Markup.callbackButton(
-                                    "Barcha ishlar ro'yxati",
+                                    "Barcha ishlar 📈",
                                     "works"
                                 ),
                                 Markup.callbackButton(
-                                    "Ish so'rab murojaat",
+                                    "Ish so'rab murojaat 🖋",
                                     "rg"
                                 ),
                             ],
@@ -221,11 +221,11 @@ async function controlWhatchWork(ctx) {
                         Markup.inlineKeyboard([
                             [
                                 Markup.callbackButton(
-                                    "Barcha ishlar ro'yxati",
+                                    "Barcha ishlar 📈",
                                     "works"
                                 ),
                                 Markup.callbackButton(
-                                    "Ish so'rab murojaat",
+                                    "Ish so'rab murojaat 🖋",
                                     "rg"
                                 ),
                             ],
@@ -243,11 +243,11 @@ async function controlWhatchWork(ctx) {
                         Markup.inlineKeyboard([
                             [
                                 Markup.callbackButton(
-                                    "Barcha ishlar ro'yxati",
+                                    "Barcha ishlar 📈",
                                     "works"
                                 ),
                                 Markup.callbackButton(
-                                    "Ish so'rab murojaat",
+                                    "Ish so'rab murojaat 🖋",
                                     "rg"
                                 ),
                             ],
@@ -265,11 +265,11 @@ async function controlWhatchWork(ctx) {
                         Markup.inlineKeyboard([
                             [
                                 Markup.callbackButton(
-                                    "Barcha ishlar ro'yxati",
+                                    "Barcha ishlar 📈",
                                     "works"
                                 ),
                                 Markup.callbackButton(
-                                    "Ish so'rab murojaat",
+                                    "Ish so'rab murojaat 🖋",
                                     "rg"
                                 ),
                             ],
@@ -287,11 +287,11 @@ async function controlWhatchWork(ctx) {
                         Markup.inlineKeyboard([
                             [
                                 Markup.callbackButton(
-                                    "Barcha ishlar ro'yxati",
+                                    "Barcha ishlar 📈",
                                     "works"
                                 ),
                                 Markup.callbackButton(
-                                    "Ish so'rab murojaat",
+                                    "Ish so'rab murojaat 🖋",
                                     "rg"
                                 ),
                             ],
@@ -309,11 +309,11 @@ async function controlWhatchWork(ctx) {
                         Markup.inlineKeyboard([
                             [
                                 Markup.callbackButton(
-                                    "Barcha ishlar ro'yxati",
+                                    "Barcha ishlar 📈",
                                     "works"
                                 ),
                                 Markup.callbackButton(
-                                    "Ish so'rab murojaat",
+                                    "Ish so'rab murojaat 🖋",
                                     "rg"
                                 ),
                             ],
@@ -331,11 +331,11 @@ async function controlWhatchWork(ctx) {
                         Markup.inlineKeyboard([
                             [
                                 Markup.callbackButton(
-                                    "Barcha ishlar ro'yxati",
+                                    "Barcha ishlar 📈",
                                     "works"
                                 ),
                                 Markup.callbackButton(
-                                    "Ish so'rab murojaat",
+                                    "Ish so'rab murojaat 🖋",
                                     "rg"
                                 ),
                             ],
@@ -355,11 +355,11 @@ async function controlWhatchWork(ctx) {
                         Markup.inlineKeyboard([
                             [
                                 Markup.callbackButton(
-                                    "Barcha ishlar ro'yxati",
+                                    "Barcha ishlar 📈",
                                     "works"
                                 ),
                                 Markup.callbackButton(
-                                    "Ish so'rab murojaat",
+                                    "Ish so'rab murojaat 🖋",
                                     "rg"
                                 ),
                             ],
@@ -369,17 +369,27 @@ async function controlWhatchWork(ctx) {
                     .HTML()
             );
             break;
-        case "Asosiy menyuga qaydish":
+        case "Asosiy menyuga qaytish":
             await ctx.replyWithPhoto(
                 { source: "./media/183aee9429a9acb3695d3ede52103f83.jpg" },
                 Extra.caption('<b>Xush kelibsiz "Kafolat 99.9%" xizmatiga </b>')
                     .markup(
                         Markup.inlineKeyboard([
-                            [Markup.callbackButton("Ish qidirish", "possible")],
-                            [Markup.callbackButton("Ishchi qidirish", "need")],
                             [
                                 Markup.callbackButton(
-                                    "Izoh qoldirish",
+                                    "Ish qidirish 📄",
+                                    "possible"
+                                ),
+                            ],
+                            [
+                                Markup.callbackButton(
+                                    "Ishchi qidirish 📄",
+                                    "need"
+                                ),
+                            ],
+                            [
+                                Markup.callbackButton(
+                                    "Izoh qoldirish 🖊",
                                     "comments"
                                 ),
                             ],
@@ -394,7 +404,14 @@ async function controlWhatchWork(ctx) {
 // malumotlarni tog'riligini tekshirish uchun oxirgi murojat
 async function controlAddWork(ctx) {
     await ctx.replyWithHTML(
-        "Malumotlar joylansinmi?",
+        `📂Malumotlar joylansinmi ⁉️
+<b>👤F.I.O:</b> "${ctx.session.familya}  ${ctx.session.ism}"
+<b>💵 To'lov turi</b> :${ctx.session.TolovTuri}
+<b>💰 To'lov summasi</b> :${ctx.session.TolovSumma}
+<b>🌐 Manzil</b>:${ctx.session.manzil}
+<b>⏱ Murojaat qilish vaqti</b>: ${ctx.session.ishVaqti}
+<b>📞 Tel</b> : ${ctx.session.telNomer}
+<b>📌 Maqsad :</b>: ${ctx.session.maqsad}`,
         Extra.markup(
             Markup.inlineKeyboard([
                 [

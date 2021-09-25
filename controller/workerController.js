@@ -8,9 +8,9 @@ async function controlStart(ctx) {
         Extra.caption('<b>Xush kelibsiz "Kafolat 99.9%" xizmatiga </b>')
             .markup(
                 Markup.inlineKeyboard([
-                    [Markup.callbackButton("Ish qidirish", "possible")],
-                    [Markup.callbackButton("Ishchi qidirish", "need")],
-                    [Markup.callbackButton("Izoh qoldirish", "comments")],
+                    [Markup.callbackButton("Ish qidirish 📄", "possible")],
+                    [Markup.callbackButton("Ishchi qidirish 📄", "need")],
+                    [Markup.callbackButton("Izoh qoldirish 🖊", "comments")],
                 ])
             )
             .HTML()
@@ -19,14 +19,14 @@ async function controlStart(ctx) {
 // umumiy categoriyalar ishchilar uchun...
 async function controlWorkers(ctx) {
     return await ctx.replyWithHTML(
-        "<i><b>Umumiy ishchilar ro'yxati marhamat</b></i>",
+        "<i><b>Umumiy ishchilar ro'yxati marhamat 📑</b></i>",
         Markup.keyboard([
             ["Idish yuvuvchilar", "Enagalar", "O'qituvchilar"],
             ["Farroshlar", "Dasturchilar", "Quruvchilar"],
-            ["Sotuvchilar", "Maklerlar", "Novvoylar"],
+            ["Sotuvchilar", "Ijarachilar", "Novvoylar"],
             ["Haydovchilar", "Sport trinerlar", "Elektriklar"],
             ["Mexaniklar", "Santexniklar", "Auto moykachilar"],
-            ["Asosiy menyuga qaydish"],
+            ["Asosiy menyuga qaytish"],
         ])
             .oneTime()
             .resize()
@@ -45,10 +45,13 @@ async function controlWhatch(ctx) {
                         Markup.inlineKeyboard([
                             [
                                 Markup.callbackButton(
-                                    "Barcha ishchilar",
+                                    "Barcha ishchilar 📈",
                                     "workers"
                                 ),
-                                Markup.callbackButton("Nomzodni qo'yish", "rg"),
+                                Markup.callbackButton(
+                                    "Ish taklif etish 🖋",
+                                    "rgWork"
+                                ),
                             ],
                             [Markup.callbackButton("Ortga qaytish", "Back1")],
                         ])
@@ -64,10 +67,13 @@ async function controlWhatch(ctx) {
                         Markup.inlineKeyboard([
                             [
                                 Markup.callbackButton(
-                                    "Barcha ishchilar",
+                                    "Barcha ishchilar 📈",
                                     "workers"
                                 ),
-                                Markup.callbackButton("Nomzodni qo'yish", "rg"),
+                                Markup.callbackButton(
+                                    "Ish taklif etish 🖋",
+                                    "rgWork"
+                                ),
                             ],
                             [Markup.callbackButton("Ortga qaytish", "Back1")],
                         ])
@@ -83,10 +89,13 @@ async function controlWhatch(ctx) {
                         Markup.inlineKeyboard([
                             [
                                 Markup.callbackButton(
-                                    "Barcha ishchilar",
+                                    "Barcha ishchilar 📈",
                                     "workers"
                                 ),
-                                Markup.callbackButton("Nomzodni qo'yish", "rg"),
+                                Markup.callbackButton(
+                                    "Ish taklif etish 🖋",
+                                    "rgWork"
+                                ),
                             ],
                             [Markup.callbackButton("Ortga qaytish", "Back1")],
                         ])
@@ -102,10 +111,13 @@ async function controlWhatch(ctx) {
                         Markup.inlineKeyboard([
                             [
                                 Markup.callbackButton(
-                                    "Barcha ishchilar",
+                                    "Barcha ishchilar 📈",
                                     "workers"
                                 ),
-                                Markup.callbackButton("Nomzodni qo'yish", "rg"),
+                                Markup.callbackButton(
+                                    "Ish taklif etish 🖋",
+                                    "rgWork"
+                                ),
                             ],
                             [Markup.callbackButton("Ortga qaytish", "Back1")],
                         ])
@@ -121,10 +133,13 @@ async function controlWhatch(ctx) {
                         Markup.inlineKeyboard([
                             [
                                 Markup.callbackButton(
-                                    "Barcha ishchilar",
-                                    "works"
+                                    "Barcha ishchilar 📈",
+                                    "workers"
                                 ),
-                                Markup.callbackButton("Nomzodni qo'yish", "rg"),
+                                Markup.callbackButton(
+                                    "Ish taklif etish 🖋",
+                                    "rgWork"
+                                ),
                             ],
                             [Markup.callbackButton("Ortga qaytish", "Back1")],
                         ])
@@ -140,11 +155,11 @@ async function controlWhatch(ctx) {
                         Markup.inlineKeyboard([
                             [
                                 Markup.callbackButton(
-                                    "Barcha ishchilar",
+                                    "Barcha ishchilar 📈",
                                     "workers"
                                 ),
                                 Markup.callbackButton(
-                                    "Nomzodni qo'yish",
+                                    "Ish taklif etish 🖋",
                                     "rgWork"
                                 ),
                             ],
@@ -162,10 +177,13 @@ async function controlWhatch(ctx) {
                         Markup.inlineKeyboard([
                             [
                                 Markup.callbackButton(
-                                    "Barcha ishchilar",
+                                    "Barcha ishchilar 📈",
                                     "workers"
                                 ),
-                                Markup.callbackButton("Nomzodni qo'yish", "rg"),
+                                Markup.callbackButton(
+                                    "Ish taklif etish 🖋",
+                                    "rgWork"
+                                ),
                             ],
                             [Markup.callbackButton("Ortga qaytish", "Back1")],
                         ])
@@ -173,7 +191,7 @@ async function controlWhatch(ctx) {
                     .HTML()
             );
             break;
-        case "Maklerlar":
+        case "Ijarachilar":
             await ctx.replyWithPhoto(
                 { source: "./media/photoCategoriesWorker/makler.jpg" },
                 Extra.caption("<b>Ro'yxatdan o'tish yoki ro'yxatni ko'rish</b>")
@@ -181,10 +199,13 @@ async function controlWhatch(ctx) {
                         Markup.inlineKeyboard([
                             [
                                 Markup.callbackButton(
-                                    "Barcha ishchilar",
+                                    "Barcha ishchilar 📈",
                                     "workers"
                                 ),
-                                Markup.callbackButton("Nomzodni qo'yish", "rg"),
+                                Markup.callbackButton(
+                                    "Ish taklif etish 🖋",
+                                    "rgWork"
+                                ),
                             ],
                             [Markup.callbackButton("Ortga qaytish", "Back1")],
                         ])
@@ -200,10 +221,13 @@ async function controlWhatch(ctx) {
                         Markup.inlineKeyboard([
                             [
                                 Markup.callbackButton(
-                                    "Barcha ishchilar",
+                                    "Barcha ishchilar 📈",
                                     "workers"
                                 ),
-                                Markup.callbackButton("Nomzodni qo'yish", "rg"),
+                                Markup.callbackButton(
+                                    "Ish taklif etish 🖋",
+                                    "rgWork"
+                                ),
                             ],
                             [Markup.callbackButton("Ortga qaytish", "Back1")],
                         ])
@@ -219,10 +243,13 @@ async function controlWhatch(ctx) {
                         Markup.inlineKeyboard([
                             [
                                 Markup.callbackButton(
-                                    "Barcha ishchilar",
+                                    "Barcha ishchilar 📈",
                                     "workers"
                                 ),
-                                Markup.callbackButton("Nomzodni qo'yish", "rg"),
+                                Markup.callbackButton(
+                                    "Ish taklif etish 🖋",
+                                    "rgWork"
+                                ),
                             ],
                             [Markup.callbackButton("Ortga qaytish", "Back1")],
                         ])
@@ -238,10 +265,13 @@ async function controlWhatch(ctx) {
                         Markup.inlineKeyboard([
                             [
                                 Markup.callbackButton(
-                                    "Barcha ishchilar",
+                                    "Barcha ishchilar 📈",
                                     "workers"
                                 ),
-                                Markup.callbackButton("Nomzodni qo'yish", "rg"),
+                                Markup.callbackButton(
+                                    "Ish taklif etish 🖋",
+                                    "rgWork"
+                                ),
                             ],
                             [Markup.callbackButton("Ortga qaytish", "Back1")],
                         ])
@@ -257,10 +287,13 @@ async function controlWhatch(ctx) {
                         Markup.inlineKeyboard([
                             [
                                 Markup.callbackButton(
-                                    "Barcha ishchilar",
+                                    "Barcha ishchilar 📈",
                                     "workers"
                                 ),
-                                Markup.callbackButton("Nomzodni qo'yish", "rg"),
+                                Markup.callbackButton(
+                                    "Ish taklif etish 🖋",
+                                    "rgWork"
+                                ),
                             ],
                             [Markup.callbackButton("Ortga qaytish", "Back1")],
                         ])
@@ -276,10 +309,13 @@ async function controlWhatch(ctx) {
                         Markup.inlineKeyboard([
                             [
                                 Markup.callbackButton(
-                                    "Barcha ishchilar",
+                                    "Barcha ishchilar 📈",
                                     "workers"
                                 ),
-                                Markup.callbackButton("Nomzodni qo'yish", "rg"),
+                                Markup.callbackButton(
+                                    "Ish taklif etish 🖋",
+                                    "rgWork"
+                                ),
                             ],
                             [Markup.callbackButton("Ortga qaytish", "Back1")],
                         ])
@@ -295,10 +331,13 @@ async function controlWhatch(ctx) {
                         Markup.inlineKeyboard([
                             [
                                 Markup.callbackButton(
-                                    "Barcha ishchilar",
+                                    "Barcha ishchilar 📈",
                                     "workers"
                                 ),
-                                Markup.callbackButton("Nomzodni qo'yish", "rg"),
+                                Markup.callbackButton(
+                                    "Ish taklif etish 🖋",
+                                    "rgWork"
+                                ),
                             ],
                             [Markup.callbackButton("Ortga qaytish", "Back1")],
                         ])
@@ -316,10 +355,13 @@ async function controlWhatch(ctx) {
                         Markup.inlineKeyboard([
                             [
                                 Markup.callbackButton(
-                                    "Barcha ishchilar",
+                                    "Barcha ishchilar 📈",
                                     "workers"
                                 ),
-                                Markup.callbackButton("Nomzodni qo'yish", "rg"),
+                                Markup.callbackButton(
+                                    "Ish taklif etish 🖋",
+                                    "rgWork"
+                                ),
                             ],
                             [Markup.callbackButton("Ortga qaytish", "Back1")],
                         ])
@@ -333,7 +375,13 @@ async function controlWhatch(ctx) {
 }
 async function controlAddWorker(ctx) {
     await ctx.replyWithHTML(
-        "Malumotlar joylansinmi?",
+        ` 📂Malumotlar joylansinmi ⁉️
+<b>👤 F.I.O</b>: '${ctx.session.familya} ${ctx.session.ism}'
+<b>⏳ osh </b>: ${ctx.session.yosh}
+<b>🌐 Manzil </b>: ${ctx.session.manzil}
+<b>⏱ Murojaat qilish vaqti</b>: ${ctx.session.ishVaqti}
+<b>📞 Tel </b>: ${ctx.session.telNomer}
+<b>📌 Maqsad :</b>: ${ctx.session.maqsad}`,
         Extra.markup(
             Markup.inlineKeyboard([
                 [

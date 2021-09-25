@@ -6,8 +6,8 @@ async function commentWord(ctx) {
     ctx.replyWithPhoto(
         { source: "./media/NamunagaRasm/Just_think.jpg" },
         Extra.caption(
-            "Bu botda yana qanday bo'limlar ochilishini xoxlaysiz, " +
-                "<i>bu haqda yozib qoldirish mumkin</i>😊😊😊"
+            `<b>Bu botda yana qanday bo'limlar ochilishini xoxlaysiz?</b>
+(<i>bu haqda yozib qoldirishingiz mumkin</i>) 📝`
         ).HTML()
     );
 }
@@ -16,8 +16,8 @@ async function thinkCom(ctx) {
         "<b>Komentariya saqlansinmi?</b>",
         Extra.markup(
             Markup.inlineKeyboard([
-                [Markup.callbackButton("Bekor qilish", "cancel")],
-                [Markup.callbackButton("Yuborish", "enter")],
+                [Markup.callbackButton("Bekor qilish 🗑", "cancel")],
+                [Markup.callbackButton("Yuborish 🗂", "enter")],
             ])
         )
     );
