@@ -27,7 +27,7 @@ const {
     selectDataWork,
     chackStoryWork,
 } = require("./modul/workModule");
-const { shoose, admin } = require("./controller/adminController");
+const { shoose, admin, post } = require("./controller/adminController");
 const {
     old_work,
     active_work,
@@ -35,10 +35,14 @@ const {
     old_worker,
     active_worker,
     all_worker,
+    all_users,
+    users_chat_ids,
 } = require("./modul/adminModue");
 const { commentWord, thinkCom } = require("./controller/commentController");
 const { commentAdd } = require("./modul/commentModule");
 const { isItNumber, ageRight } = require("./controllErrors/chackNumber");
+// foydalanuvchilarni chiqarib berish...
+const { offerResumi } = require("./controller/offerResumiCont");
 require("dotenv").config({ path: "./environment/parols.env" });
 const fs = require("fs");
 const bot = new Telegraf(process.env.BOT_TOKEN);
@@ -47,27 +51,31 @@ const bot = new Telegraf(process.env.BOT_TOKEN);
 bot.use(session());
 
 // boshlang'ich tanlov paneli uchun button...
-bot.start(async (ctx) => {
+bot.start(async(ctx) => {
     await controlStart(ctx);
-    await append(ctx.message.from);
+    try {
+        await append(ctx.message.from);
+    } catch (ex) {
+        console.log("userni datasini olishda xatolik" + ex);
+    }
     ctx.session.comments = false;
     ctx.deleteMessage();
     // console.log(typeof(ctx.message.from.username));
 });
 // *****+++++*****
 // Umumiy ishchilar ro'yxatini ochib berish...
-bot.action("need", async (ctx) => {
+bot.action("need", async(ctx) => {
     await controlWorkers(ctx);
     ctx.deleteMessage();
     // return ctx.answerCbQuery(`N ta ishchi mavjud`);
 });
 // Umumiy ishlar ro'yxatini ochib berish...
-bot.action("possible", async (ctx) => {
+bot.action("possible", async(ctx) => {
     await controlWorks(ctx);
     ctx.deleteMessage();
 });
 // Komentariya qoldirish uchun..
-bot.action("comments", async (ctx) => {
+bot.action("comments", async(ctx) => {
     await commentWord(ctx);
     ctx.session.comments = true;
     ctx.deleteMessage();
@@ -112,13 +120,16 @@ let keysWork = [
 ];
 let admin_key = { key: "Jop13_2001" };
 // tanlangan ishchilar yoki nomzod qo'yish bo'lmimi?
-bot.on("message", async (ctx) => {
+bot.on("message", async(ctx) => {
     if (keysWorker.includes(ctx.message.text)) {
         await controlWhatch(ctx);
         // ishchilarni qidirib chiqarishda foydalaniladi...
         ctx.session.text = ctx.message.text;
         for (let key in keysWorker) {
-            if (ctx.message.text.substr(0, 3) == keysWorker[key].substr(0, 3)) {
+            if (
+                ctx.message.text.substring(0, 3) ==
+                keysWorker[key].substring(0, 3)
+            ) {
                 ctx.session.ishTuri = keysWork[key];
             }
         }
@@ -138,7 +149,10 @@ bot.on("message", async (ctx) => {
         // ishchilarni qidirib chiqarishda foydalaniladi...
         ctx.session.text = ctx.message.text;
         for (let key in keysWork) {
-            if (ctx.message.text.substr(0, 3) == keysWork[key].substr(0, 3)) {
+            if (
+                ctx.message.text.substring(0, 3) ==
+                keysWork[key].substring(0, 3)
+            ) {
                 ctx.session.ishTuri = keysWorker[key];
             }
         }
@@ -146,10 +160,14 @@ bot.on("message", async (ctx) => {
         ctx.session.DataSkil = 0;
         ctx.session.comments = false;
         // keyboard kinopkalarni o'chirib tashlash uchun
-        const placeholder = await ctx.reply("...", {
-            reply_markup: { remove_keyboard: true },
-        });
-        ctx.deleteMessage(placeholder.message_id);
+        try {
+            const placeholder = await ctx.reply("...", {
+                reply_markup: { remove_keyboard: true },
+            });
+            ctx.deleteMessage(placeholder.message_id);
+        } catch (ex) {
+            console.log("Tanlov markup buttonlarni o'chirib tashlash");
+        }
     }
     if (0 < ctx.session.DataSkil) {
         switch (ctx.session.DataSkil) {
@@ -225,7 +243,7 @@ bot.on("message", async (ctx) => {
                 ctx.reply("Ishning manzilini kiriting");
                 ctx.session.DataSkil++;
                 break;
-            // profilaktika ishlari...
+                // profilaktika ishlari...
             case -4:
                 ctx.session.manzil = ctx.message.text;
                 ctx.reply("Sizga murojaat qilish vaqti");
@@ -265,62 +283,102 @@ bot.on("message", async (ctx) => {
         ctx.session.commentText = ctx.message.text;
         // ctx.reply(ctx.message.text);
     }
+    if (ctx.session.postid) {
+        await post(ctx);
+        ctx.session.Post = ctx.message.text;
+        ctx.session.postid = false;
+    }
 });
 // komentariyani bazaga saqlash uchun..
-bot.action("cancel", async (ctx) => {
+bot.action("cancel", async(ctx) => {
     ctx.replyWithHTML("<b>Ma'lumot bekor qilindi 🔥</b>");
     ctx.session.comments = undefined;
     ctx.deleteMessage();
     await controlStart(ctx);
 });
 // komentariyani saqlash uchun..
-bot.action("enter", async (ctx) => {
+bot.action("enter", async(ctx) => {
     // console.log(typeof(ctx.message.from.username));
-    await commentAdd(
-        ctx.update.callback_query.from.id,
-        ctx.session.commentText
-    );
-    await ctx.replyWithHTML(
-        "<b>Izohingiz joylandi! ✅</b><i> \n E'tibor uchun raxmat</i>"
-    );
-    ctx.session.comments = undefined;
-    ctx.deleteMessage();
-    await controlStart(ctx);
+    try {
+        await commentAdd(
+            ctx.update.callback_query.from.id,
+            ctx.session.commentText
+        );
+        await ctx.replyWithHTML(
+            "<b>Izohingiz joylandi! ✅</b><i> \n E'tibor uchun raxmat</i>"
+        );
+        ctx.session.comments = undefined;
+        ctx.deleteMessage();
+        await controlStart(ctx);
+    } catch (ex) {
+        console.log("Komentariya yuborishda xatolik..." + ex);
+    }
 });
 // umummiy ishchilar ro'yxatiga qaytish functions...
-bot.action("Back1", async (ctx) => {
+bot.action("Back1", async(ctx) => {
     await controlWorkers(ctx);
     ctx.deleteMessage();
 });
 // umumiy ishlar ro'yxatiga qaytish uchun functions...
-bot.action("Back2", async (ctx) => {
+bot.action("Back2", async(ctx) => {
     await controlWorks(ctx);
     ctx.deleteMessage();
 });
 // asosiy categoriesga qaytish...
-bot.action("Back_story", async (ctx) => {
+bot.action("Back_story", async(ctx) => {
     await controlStart(ctx);
     ctx.deleteMessage();
 });
 // admin kategoriyasiga qaytish...
-bot.action("Back_story1", async (ctx) => {
+bot.action("Back_story1", async(ctx) => {
     await shoose(ctx);
     ctx.deleteMessage();
 });
 // status false bo'lgan statistikani ko'rishi uchun...
-bot.action("w1", async (ctx) => {
+bot.action("w1", async(ctx) => {
     await admin(ctx);
     ctx.session.typeWork = "w1";
     ctx.deleteMessage();
 });
 // status true bo'lgan statistikani ko'rishi uchun...
-bot.action("w2", async (ctx) => {
+bot.action("w2", async(ctx) => {
     await admin(ctx);
     ctx.session.typeWork = "w2";
     ctx.deleteMessage();
 });
+// barcha foydalanuvchilarga post jo'natish..
+bot.action("sendPost", async(ctx) => {
+    ctx.replyWithHTML("<i><b>Postni kiriting!</b></i>");
+    ctx.session.postid = true;
+    ctx.deleteMessage();
+});
+// postni jo'natish uchun funtion qismi...
+bot.action("sendM", async(ctx) => {
+    try {
+        const users = await users_chat_ids();
+        for (let key of users) {
+            try {
+                await ctx.telegram.sendMessage(key.chat_id, ctx.session.Post);
+            } catch (ex) {
+                console.log("bulocklagan");
+            }
+        }
+        await shoose(ctx);
+        ctx.session.Post = undefined;
+        ctx.deleteMessage();
+    } catch (ex) {
+        console.log("Bu user sizni bulocklagan...");
+    }
+});
+// comentriyani jo'natishni bekor qilish uchun...
+bot.action("deleteM", async(ctx) => {
+    ctx.replyWithHTML("Post bekor qilindi...");
+    await shoose(ctx);
+    ctx.session.Post = undefined;
+    ctx.deleteMessage();
+});
 // statistikani bilish uchun controllerga murojaat...
-bot.action("all", async (ctx) => {
+bot.action("all", async(ctx) => {
     if (ctx.session.typeWork == "w1") {
         const result_data = await all_work();
         ctx.reply("Umumiy foydalanuvchilar soni : " + result_data);
@@ -331,7 +389,7 @@ bot.action("all", async (ctx) => {
         ctx.session.typeWork == undefined;
     }
 });
-bot.action("old", async (ctx) => {
+bot.action("old", async(ctx) => {
     if (ctx.session.typeWork == "w1") {
         const result_data = await old_work();
         ctx.reply("Foydalanib bo'lganlar soni : " + result_data);
@@ -342,7 +400,7 @@ bot.action("old", async (ctx) => {
         ctx.session.typeWork == undefined;
     }
 });
-bot.action("active", async (ctx) => {
+bot.action("active", async(ctx) => {
     if (ctx.session.typeWork == "w1") {
         const result_data = await active_work();
         ctx.reply("Xozirda foydalanayotganlar soni : " + result_data);
@@ -355,7 +413,7 @@ bot.action("active", async (ctx) => {
 });
 // ro'yxatga olish jarayoni...
 // Foydalanuvchilarni ro'yxatini chiqarish yoki ro'yxatga olish...
-bot.action("rg", async (ctx) => {
+bot.action("rg", async(ctx) => {
     // console.log(ctx.update.callback_query.from.id);
     const data = await chackUser(
         ctx.update.callback_query.from,
@@ -364,8 +422,7 @@ bot.action("rg", async (ctx) => {
     // ctx.reply(ctx.session.ishTuri);
     if (data == -1) {
         ctx.session.DataSkil = 7;
-        await ctx.replyWithPhoto(
-            { source: "./media/NamunagaRasm/Namuna.jpg" },
+        await ctx.replyWithPhoto({ source: "./media/NamunagaRasm/Namuna.jpg" },
             Extra.caption(
                 `❗️Barcha savollarga javob bering.
 📚" Familya Ism "
@@ -391,7 +448,7 @@ bot.action("rg", async (ctx) => {
     }
 });
 // ishchi foydalunuvchilarni ro'yxatga olish yoki ro'yxatni chiqarish...
-bot.action("rgWork", async (ctx) => {
+bot.action("rgWork", async(ctx) => {
     const dataWork = await chackUserWork(
         ctx.update.callback_query.from,
         ctx.session.ishTuri
@@ -399,11 +456,10 @@ bot.action("rgWork", async (ctx) => {
     // tekshirib ko'ramiz oldin obuna bo'lganmi yoki yoq..
     if (dataWork == -1) {
         ctx.session.DataSkil = -8;
-        await ctx.replyWithPhoto(
-            { source: "media/NamunagaRasm/royxatga.jpg" },
+        await ctx.replyWithPhoto({ source: "media/NamunagaRasm/royxatga.jpg" },
             Extra.caption(
                 "❗️ Berilgan savollarga javob bering!\n 📚Familya,Ism,Yosh,Manzil,\n☀️/🌑To'lov turi(kunlik yo'ki oylik)," +
-                    "\n💰 O'rtacha to'lov qiymati,\n 🌐Manzilni kiriting,\n 📞Telfon nomer(+998-- --- -- --)"
+                "\n💰 O'rtacha to'lov qiymati,\n 🌐Manzilni kiriting,\n 📞Telfon nomer(+998-- --- -- --)"
             )
         );
         ctx.reply("Familiyangizni kiriting");
@@ -421,80 +477,93 @@ bot.action("rgWork", async (ctx) => {
     }
 });
 // bazaga ishchilar ro'yxatiini joylash...
-bot.action("go1", async (ctx) => {
+bot.action("go1", async(ctx) => {
     // console.log(ctx.update.callback_query.from.id);
-    const test = await dataAddWorker(
-        ctx.session,
-        ctx.update.callback_query.from
-    );
-    if (test) {
-        await ctx.replyWithHTML(
-            "\t Mulomotlar joylandi!✅\n <i>`foydalanganiz uchun raxmat</i>`😊"
+    try {
+        const test = await dataAddWorker(
+            ctx.session,
+            ctx.update.callback_query.from
         );
-        await controlWorks(ctx);
-        ctx.session.ishTuri = undefined;
-        ctx.session.familya = undefined;
-        ctx.session.ism = undefined;
-        ctx.session.yosh = undefined;
-        ctx.session.manzil = undefined;
-        ctx.session.telNomer = undefined;
-        ctx.session.ishVaqti = undefined;
-        ctx.session.maqsad = undefined;
-        ctx.session.DataSkil = 0;
-    } else {
-        ctx.reply(
-            "Kechirasiz muammo yuz berdi ma'lumotlarni qayta kiritng 🛠 ❗️"
-        );
-        await controlWorks(ctx);
-        ctx.session.ishTuri = undefined;
-        ctx.session.familya = undefined;
-        ctx.session.ism = undefined;
-        ctx.session.yosh = undefined;
-        ctx.session.manzil = undefined;
-        ctx.session.telNomer = undefined;
-        ctx.session.ishVaqti = undefined;
-        ctx.session.maqsad = undefined;
-        ctx.session.DataSkil = 0;
+        if (test) {
+            await ctx.replyWithHTML(
+                "\t Mulomotlar joylandi!✅\n <i>`foydalanganiz uchun raxmat</i>`😊"
+            );
+            await controlWorks(ctx);
+            ctx.session.ishTuri = undefined;
+            ctx.session.familya = undefined;
+            ctx.session.ism = undefined;
+            ctx.session.yosh = undefined;
+            ctx.session.manzil = undefined;
+            ctx.session.telNomer = undefined;
+            ctx.session.ishVaqti = undefined;
+            ctx.session.maqsad = undefined;
+            ctx.session.DataSkil = 0;
+        } else {
+            ctx.reply(
+                "Kechirasiz muammo yuz berdi ma'lumotlarni qayta kiritng 🛠 ❗️"
+            );
+            await controlWorks(ctx);
+            ctx.session.ishTuri = undefined;
+            ctx.session.familya = undefined;
+            ctx.session.ism = undefined;
+            ctx.session.yosh = undefined;
+            ctx.session.manzil = undefined;
+            ctx.session.telNomer = undefined;
+            ctx.session.ishVaqti = undefined;
+            ctx.session.maqsad = undefined;
+            ctx.session.DataSkil = 0;
+        }
+        ctx.deleteMessage();
+    } catch (ex) {
+        console.log("Ishchini kiritishda xatolik index.js/491 dan" + ex);
     }
-    ctx.deleteMessage();
 });
 //
-bot.action("go2", async (ctx) => {
+bot.action("go2", async(ctx) => {
     // console.log(ctx.update.callback_query.from.id);
-    const test = await dataAddWork(ctx.session, ctx.update.callback_query.from);
-    if (test) {
-        ctx.replyWithHTML(
-            "Mulomotlar joylandi!\n <i>foydalanganiz uchun raxmat</i>😊"
+    try {
+        const test = await dataAddWork(
+            ctx.session,
+            ctx.update.callback_query.from
         );
-        await controlWorkers(ctx);
-        ctx.session.familya = undefined;
-        ctx.session.ism = undefined;
-        ctx.session.TolovTuri = undefined;
-        ctx.session.TolovSumma = undefined;
-        ctx.session.manzil = undefined;
-        ctx.session.telNomer = undefined;
-        ctx.session.ishVaqti = undefined;
-        ctx.session.maqsad = undefined;
-        ctx.session.DataSkil = 0;
-    } else {
-        ctx.reply(
-            "Kechirasiz muammo yuz berdi ma'lumotlarni qayta kiritng 🛠 ❗️"
+        if (test) {
+            ctx.replyWithHTML(
+                "Mulomotlar joylandi!\n <i>foydalanganiz uchun raxmat</i>😊"
+            );
+            await controlWorkers(ctx);
+            ctx.session.familya = undefined;
+            ctx.session.ism = undefined;
+            ctx.session.TolovTuri = undefined;
+            ctx.session.TolovSumma = undefined;
+            ctx.session.manzil = undefined;
+            ctx.session.telNomer = undefined;
+            ctx.session.ishVaqti = undefined;
+            ctx.session.maqsad = undefined;
+            ctx.session.DataSkil = 0;
+        } else {
+            ctx.reply(
+                "Kechirasiz muammo yuz berdi ma'lumotlarni qayta kiritng 🛠 ❗️"
+            );
+            await controlWorkers(ctx);
+            ctx.session.familya = undefined;
+            ctx.session.ism = undefined;
+            ctx.session.TolovTuri = undefined;
+            ctx.session.TolovSumma = undefined;
+            ctx.session.manzil = undefined;
+            ctx.session.telNomer = undefined;
+            ctx.session.ishVaqti = undefined;
+            ctx.session.maqsad = undefined;
+            ctx.session.DataSkil = 0;
+        }
+        ctx.deleteMessage();
+    } catch (ex) {
+        console.log(
+            "Ishchi malmuotlarini jo'natishda xatolik index.js/530" + ex
         );
-        await controlWorkers(ctx);
-        ctx.session.familya = undefined;
-        ctx.session.ism = undefined;
-        ctx.session.TolovTuri = undefined;
-        ctx.session.TolovSumma = undefined;
-        ctx.session.manzil = undefined;
-        ctx.session.telNomer = undefined;
-        ctx.session.ishVaqti = undefined;
-        ctx.session.maqsad = undefined;
-        ctx.session.DataSkil = 0;
     }
-    ctx.deleteMessage();
 });
 // foydalanuvchini yig'ilgan barcha malumotini tozalash...
-bot.action("stop1", async (ctx) => {
+bot.action("stop1", async(ctx) => {
     await ctx.reply("Ma'lumotlar bekor qilindi ishga ❌");
     ctx.session.ishTuri = undefined;
     ctx.session.familya = undefined;
@@ -509,7 +578,7 @@ bot.action("stop1", async (ctx) => {
     ctx.deleteMessage();
 });
 // foydalanauvchini yig'ilgan barcha malumotini tozalash...
-bot.action("stop2", async (ctx) => {
+bot.action("stop2", async(ctx) => {
     await ctx.reply("Ma'lumotlar bekor qilindi ❌");
     ctx.session.familya = undefined;
     ctx.session.ism = undefined;
@@ -526,86 +595,177 @@ bot.action("stop2", async (ctx) => {
 // Istalgan kategoriya ishchilar ro'yxatni chiqarish ...
 
 // ++++++++++++++
-bot.action("workers", async (ctx) => {
-    for (let key in keysWork) {
-        if (ctx.session.text.substr(0, 3) == keysWork[key].substr(0, 3)) {
-            ctx.session.ishTuri = keysWorker[key];
+bot.action("workers", async(ctx) => {
+    try {
+        for (let key in keysWork) {
+            if (
+                ctx.session.text.substring(0, 3) ==
+                keysWork[key].substring(0, 3)
+            ) {
+                ctx.session.ishTuri = keysWorker[key];
+            }
         }
-    }
-    const allData = await selectData(ctx.session.ishTuri);
-    if (allData.length > 0) {
-        let counter = 1;
-        for (let key in allData) {
-            await ctx.replyWithHTML(
-                `<b>👤${counter}-F.I.O</b>: '${allData[key].firstName} ${allData[key].name}'
-<b>⏳ Yosh </b>: ${allData[key].age}
-<b>🌐 Manzil </b>: ${allData[key].address}
-<b>⏱ Murojaat qilish vaqti</b>: ${allData[key].workTime}
-<b>📞 Tel </b>: ${allData[key].telNumber}
-<b>📌 Maqsad </b>: ${allData[key].goal}`
-            );
-            counter++;
-            person = "";
+        ctx.session.AD = await selectData(ctx.session.ishTuri);
+        console.log(ctx.session.AD);
+        if (ctx.session.AD.length > 0) {
+            ctx.session.dataCounter = 0;
+            //             for (let key in allData) {
+            //                 await ctx.replyWithHTML(
+            //                     `<b>👤${counter}-F.I.O</b>: '${allData[key].firstName} ${allData[key].name}'
+            // <b>⏳ Yosh </b>: ${allData[key].age}
+            // <b>🌐 Manzil </b>: ${allData[key].address}
+            // <b>⏱ Murojaat qilish vaqti</b>: ${allData[key].workTime}
+            // <b>📞 Tel </b>: ${allData[key].telNumber}
+            // <b>📌 Maqsad </b>: ${allData[key].goal}`
+            //                 );
+            //                 counter++;
+            //                 person = "";
+            //             }
+            // await controlWorkers(ctx);
+            // counter = counter / counter;
+            ctx.session.workerData = `
+            <b>Umumiy foydalanuvchilar soni</b>  <b>( ${
+                ctx.session.AD.length
+            } )</b>
+            
+<b>👤 ${ctx.session.dataCounter + 1} - F.I.O</b>: '${
+                ctx.session.AD[ctx.session.dataCounter].firstName
+            } ${ctx.session.AD[ctx.session.dataCounter].name}'
+<b>⏳ Yosh </b>: ${ctx.session.AD[ctx.session.dataCounter].age}
+<b>🌐 Manzil </b>: ${ctx.session.AD[ctx.session.dataCounter].address}
+<b>⏱ Murojaat qilish vaqti</b>: ${
+                ctx.session.AD[ctx.session.dataCounter].workTime
+            }
+<b>📞 Tel </b>: ${ctx.session.AD[ctx.session.dataCounter].telNumber}
+<b>📌 Maqsad </b>: ${ctx.session.AD[ctx.session.dataCounter].goal}`;
+            ctx.deleteMessage();
+            ctx.session.dataCounter++;
+            await offerResumi(ctx, ctx.session.workerData);
+
+            ctx.session.ishTuri = undefined;
+            ctx.session.text = undefined;
+        } else {
+            ctx.replyWithHTML("<i>Bu bo'limda malumotlar mavjud emas...❓</i>");
+            await controlWorkers(ctx);
+            ctx.deleteMessage();
+            // console.log("Bu categoryda malumot mavjud emas");
+            ctx.session.ishTuri = undefined;
+            ctx.session.text = undefined;
         }
-        await controlWorkers(ctx);
-        counter = counter / counter;
-        ctx.deleteMessage();
-        ctx.session.ishTuri = undefined;
-        ctx.session.text = undefined;
-    } else {
-        ctx.replyWithHTML("<i>Bu bo'limda malumotlar mavjud emas...❓</i>");
-        await controlWorkers(ctx);
-        ctx.deleteMessage();
-        // console.log("Bu categoryda malumot mavjud emas");
-        ctx.session.ishTuri = undefined;
-        ctx.session.text = undefined;
+    } catch (ex) {
+        console.log(
+            "Ishchini rezumisini chiqarishda xatolik index.js/607" + ex
+        );
     }
 });
-// Istalgan categeoriya ishlar ro'yxatni chiqarish ...
-bot.action("works", async (ctx) => {
-    for (let key in keysWorker) {
-        if (ctx.session.text.substr(0, 3) == keysWorker[key].substr(0, 3)) {
-            ctx.session.ishTuri = keysWork[key];
+// orqaga qaytarib qo'yish uchun...
+bot.action("stopRr", async(ctx) => {
+    ctx.session.workerData = undefined;
+    ctx.session.dataCounter = undefined;
+    ctx.session.AD = undefined;
+    await controlWorkers(ctx);
+    ctx.deleteMessage();
+});
+// boshqa ishchini tekshirish uchun...
+bot.action("nextRr", async(ctx) => {
+    try {
+        if (ctx.session.dataCounter < ctx.session.AD.length) {
+            ctx.session.workerData = `
+            <b>Umumiy foydalanuvchilar soni</b>  <b>( ${
+                ctx.session.AD.length
+            } )</b>
+            
+<b>👤 ${ctx.session.dataCounter + 1} - F.I.O</b>: '${
+                ctx.session.AD[ctx.session.dataCounter].firstName
+            } ${ctx.session.AD[ctx.session.dataCounter].name}'
+<b>⏳ Yosh </b>: ${ctx.session.AD[ctx.session.dataCounter].age}
+<b>🌐 Manzil </b>: ${ctx.session.AD[ctx.session.dataCounter].address}
+<b>⏱ Murojaat qilish vaqti</b>: ${
+                ctx.session.AD[ctx.session.dataCounter].workTime
+            }
+<b>📞 Tel </b>: ${ctx.session.AD[ctx.session.dataCounter].telNumber}
+<b>📌 Maqsad </b>: ${ctx.session.AD[ctx.session.dataCounter].goal}`;
+            ctx.session.dataCounter++;
+            await offerResumi(ctx, ctx.session.workerData);
+            // ctx.editMessageText(
+            //     "Keyingi ishchi",
+            //     // Extra.markup(
+            //     //     Markup.inlineKeyboard([
+            //     //         [
+            //     //             Markup.callbackButton("Orqaga", "backRr"),
+            //     //             Markup.callbackButton("Oldinga", "nextRr"),
+            //     //         ],
+            //     //         [Markup.callbackButton("Bekor qilish", "stopRr")],
+            //     //     ])
+            //     // )
+            // );
+            ctx.session.workerData = undefined;
+        } else {
+            ctx.session.workerData = "OXIRGI FOYDALANUVCHI";
+            await offerResumi(ctx, ctx.session.workerData);
+            ctx.deleteMessage();
         }
+    } catch (ex) {
+        console.log(
+            `${ctx.session.dataCounter + 1} - ishchini o'tkazishda xatolik`
+        );
     }
-    const allDataWork = await selectDataWork(ctx.session.ishTuri);
-    if (allDataWork.length > 0) {
-        let counter = 1;
-        for (let key in allDataWork) {
-            await ctx.replyWithHTML(
-                `<b>👤 ${counter}-F.I.O:</b>'${allDataWork[key].firstName} ${allDataWork[key].name}'
+});
+// Ishchilarni ro'yxatini orqaga o'tkazish functioni
+// Istalgan categeoriya ishlar ro'yxatni chiqarish ...
+bot.action("works", async(ctx) => {
+    try {
+        for (let key in keysWorker) {
+            if (ctx.session.text.substr(0, 3) == keysWorker[key].substr(0, 3)) {
+                ctx.session.ishTuri = keysWork[key];
+            }
+        }
+        const allDataWork = await selectDataWork(ctx.session.ishTuri);
+        if (allDataWork.length > 0) {
+            let counter = 1;
+            for (let key in allDataWork) {
+                await ctx.replyWithHTML(
+                    `<b>👤 ${counter}-F.I.O:</b>'${allDataWork[key].firstName} ${allDataWork[key].name}'
 <b>💵 To'lov turi</b> :${allDataWork[key].payment_type}
 <b>💰 To'lov summasi</b> :${allDataWork[key].payment_amount}
 <b>🌐 Manzil</b>:${allDataWork[key].address}
 <b>⏱ Murojaat qilish vaqti</b>: ${allDataWork[key].workTime}
 <b>📞 Tel</b> : ${allDataWork[key].telNumber}
 <b>📌 Maqsad :</b>: ${allDataWork[key].goal}`
-            );
-            counter++;
-            person = "";
+                );
+                counter++;
+                person = "";
+            }
+            await controlWorks(ctx);
+            counter = counter / counter;
+            ctx.deleteMessage();
+            ctx.session.ishTuri = undefined;
+            ctx.session.text = undefined;
+        } else {
+            ctx.replyWithHTML("<i>Bu bo'limda malumotlar mavjud emas...❓</i>");
+            await controlWorks(ctx);
+            ctx.deleteMessage();
+            // console.log("Bu categoryda malumot mavjud emas");
+            ctx.session.ishTuri = undefined;
+            ctx.session.text = undefined;
         }
-        await controlWorks(ctx);
-        counter = counter / counter;
-        ctx.deleteMessage();
-        ctx.session.ishTuri = undefined;
-        ctx.session.text = undefined;
-    } else {
-        ctx.replyWithHTML("<i>Bu bo'limda malumotlar mavjud emas...❓</i>");
-        await controlWorks(ctx);
-        ctx.deleteMessage();
-        // console.log("Bu categoryda malumot mavjud emas");
-        ctx.session.ishTuri = undefined;
-        ctx.session.text = undefined;
+    } catch (ex) {
+        console.log("Ishni beruvchini rezumisini chiqarishda xatolik" + ex);
     }
 });
 // harkunlik tekshiriv agar 10 kunga teng bo'lgan bo'lsa automat o'chirish..
-setInterval(async function () {
+setInterval(async function() {
     await chackStory();
 }, 86400000);
 // harkunlik tekshiruv agar 10 kunga teng bo'lgan bo'lsa automat o'chirish..
-setInterval(async function () {
+setInterval(async function() {
     await chackStoryWork();
 }, 86400000);
-
-console.log("bot ishga tushdi");
-bot.launch();
+// botni ishga tushurish uchun asosiy function hisoblanadi...
+bot.launch()
+    .then(() => {
+        console.log("Telegram ishga tushdi...");
+    })
+    .catch((ex) => {
+        console.log("Telegramda kutilmagan xatolik kuzatildi  :" + ex);
+    });

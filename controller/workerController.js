@@ -3,17 +3,16 @@ const Extra = require("telegraf/extra");
 const Markup = require("telegraf/markup");
 // bosh menu..
 async function controlStart(ctx) {
-    return await ctx.replyWithPhoto(
-        { source: "./media/183aee9429a9acb3695d3ede52103f83.jpg" },
+    return await ctx.replyWithPhoto({ source: "./media/183aee9429a9acb3695d3ede52103f83.jpg" },
         Extra.caption('<b>Xush kelibsiz "Kafolat 99.9%" xizmatiga </b>')
-            .markup(
-                Markup.inlineKeyboard([
-                    [Markup.callbackButton("Ish qidirish 📄", "possible")],
-                    [Markup.callbackButton("Ishchi qidirish 📄", "need")],
-                    [Markup.callbackButton("Izoh qoldirish 🖊", "comments")],
-                ])
-            )
-            .HTML()
+        .markup(
+            Markup.inlineKeyboard([
+                [Markup.callbackButton("Ish qidirish 📄", "possible")],
+                [Markup.callbackButton("Ishchi qidirish 📄", "need")],
+                [Markup.callbackButton("Izoh qoldirish 🖊", "comments")],
+            ])
+        )
+        .HTML()
     );
 }
 // umumiy categoriyalar ishchilar uchun...
@@ -28,9 +27,9 @@ async function controlWorkers(ctx) {
             ["Mexaniklar", "Santexniklar", "Auto moykachilar"],
             ["Asosiy menyuga qaytish"],
         ])
-            .oneTime()
-            .resize()
-            .extra()
+        .oneTime()
+        .resize()
+        .extra()
     );
 }
 // tanlanga kategoriyga doir ishchilar ro'yxati va qabulga yozilish...
@@ -38,335 +37,320 @@ async function controlWhatch(ctx) {
     let shoose = ctx.message.text;
     switch (shoose) {
         case "Idish yuvuvchilar":
-            await ctx.replyWithPhoto(
-                { source: "./media/photoCategoriesWorker/posidamoy.jpg" },
+            await ctx.replyWithPhoto({ source: "./media/photoCategoriesWorker/posidamoy.jpg" },
                 Extra.caption("<b>Ro'yxatdan o'tish yoki ro'yxatni ko'rish</b>")
-                    .markup(
-                        Markup.inlineKeyboard([
-                            [
-                                Markup.callbackButton(
-                                    "Barcha ishchilar 📈",
-                                    "workers"
-                                ),
-                                Markup.callbackButton(
-                                    "Ish taklif etish 🖋",
-                                    "rgWork"
-                                ),
-                            ],
-                            [Markup.callbackButton("Ortga qaytish", "Back1")],
-                        ])
-                    )
-                    .HTML()
+                .markup(
+                    Markup.inlineKeyboard([
+                        [
+                            Markup.callbackButton(
+                                "Barcha ishchilar 📈",
+                                "workers"
+                            ),
+                            Markup.callbackButton(
+                                "Ish taklif etish 🖋",
+                                "rgWork"
+                            ),
+                        ],
+                        [Markup.callbackButton("Ortga qaytish", "Back1")],
+                    ])
+                )
+                .HTML()
             );
             break;
         case "Enagalar":
-            await ctx.replyWithPhoto(
-                { source: "./media/photoCategoriesWorker/enaga.jpg" },
+            await ctx.replyWithPhoto({ source: "./media/photoCategoriesWorker/enaga.jpg" },
                 Extra.caption("<b>Ro'yxatdan o'tish yoki ro'yxatni ko'rish</b>")
-                    .markup(
-                        Markup.inlineKeyboard([
-                            [
-                                Markup.callbackButton(
-                                    "Barcha ishchilar 📈",
-                                    "workers"
-                                ),
-                                Markup.callbackButton(
-                                    "Ish taklif etish 🖋",
-                                    "rgWork"
-                                ),
-                            ],
-                            [Markup.callbackButton("Ortga qaytish", "Back1")],
-                        ])
-                    )
-                    .HTML()
+                .markup(
+                    Markup.inlineKeyboard([
+                        [
+                            Markup.callbackButton(
+                                "Barcha ishchilar 📈",
+                                "workers"
+                            ),
+                            Markup.callbackButton(
+                                "Ish taklif etish 🖋",
+                                "rgWork"
+                            ),
+                        ],
+                        [Markup.callbackButton("Ortga qaytish", "Back1")],
+                    ])
+                )
+                .HTML()
             );
             break;
         case "O'qituvchilar":
-            await ctx.replyWithPhoto(
-                { source: "./media/photoCategoriesWorker/o'qituvchi.jpg" },
+            await ctx.replyWithPhoto({ source: "./media/photoCategoriesWorker/o'qituvchi.jpg" },
                 Extra.caption("<b>Ro'yxatdan o'tish yoki ro'yxatni ko'rish</b>")
-                    .markup(
-                        Markup.inlineKeyboard([
-                            [
-                                Markup.callbackButton(
-                                    "Barcha ishchilar 📈",
-                                    "workers"
-                                ),
-                                Markup.callbackButton(
-                                    "Ish taklif etish 🖋",
-                                    "rgWork"
-                                ),
-                            ],
-                            [Markup.callbackButton("Ortga qaytish", "Back1")],
-                        ])
-                    )
-                    .HTML()
+                .markup(
+                    Markup.inlineKeyboard([
+                        [
+                            Markup.callbackButton(
+                                "Barcha ishchilar 📈",
+                                "workers"
+                            ),
+                            Markup.callbackButton(
+                                "Ish taklif etish 🖋",
+                                "rgWork"
+                            ),
+                        ],
+                        [Markup.callbackButton("Ortga qaytish", "Back1")],
+                    ])
+                )
+                .HTML()
             );
             break;
         case "Farroshlar":
-            await ctx.replyWithPhoto(
-                { source: "./media/photoCategoriesWorker/farrosh.jpg" },
+            await ctx.replyWithPhoto({ source: "./media/photoCategoriesWorker/farrosh.jpg" },
                 Extra.caption("<b>Ro'yxatdan o'tish yoki ro'yxatni ko'rish</b>")
-                    .markup(
-                        Markup.inlineKeyboard([
-                            [
-                                Markup.callbackButton(
-                                    "Barcha ishchilar 📈",
-                                    "workers"
-                                ),
-                                Markup.callbackButton(
-                                    "Ish taklif etish 🖋",
-                                    "rgWork"
-                                ),
-                            ],
-                            [Markup.callbackButton("Ortga qaytish", "Back1")],
-                        ])
-                    )
-                    .HTML()
+                .markup(
+                    Markup.inlineKeyboard([
+                        [
+                            Markup.callbackButton(
+                                "Barcha ishchilar 📈",
+                                "workers"
+                            ),
+                            Markup.callbackButton(
+                                "Ish taklif etish 🖋",
+                                "rgWork"
+                            ),
+                        ],
+                        [Markup.callbackButton("Ortga qaytish", "Back1")],
+                    ])
+                )
+                .HTML()
             );
             break;
         case "Dasturchilar":
-            await ctx.replyWithPhoto(
-                { source: "./media/photoCategoriesWorker/pragramist.jpg" },
+            await ctx.replyWithPhoto({ source: "./media/photoCategoriesWorker/pragramist.jpg" },
                 Extra.caption("<b>Ro'yxatdan o'tish yoki ro'yxatni ko'rish</b>")
-                    .markup(
-                        Markup.inlineKeyboard([
-                            [
-                                Markup.callbackButton(
-                                    "Barcha ishchilar 📈",
-                                    "workers"
-                                ),
-                                Markup.callbackButton(
-                                    "Ish taklif etish 🖋",
-                                    "rgWork"
-                                ),
-                            ],
-                            [Markup.callbackButton("Ortga qaytish", "Back1")],
-                        ])
-                    )
-                    .HTML()
+                .markup(
+                    Markup.inlineKeyboard([
+                        [
+                            Markup.callbackButton(
+                                "Barcha ishchilar 📈",
+                                "workers"
+                            ),
+                            Markup.callbackButton(
+                                "Ish taklif etish 🖋",
+                                "rgWork"
+                            ),
+                        ],
+                        [Markup.callbackButton("Ortga qaytish", "Back1")],
+                    ])
+                )
+                .HTML()
             );
             break;
         case "Quruvchilar":
-            await ctx.replyWithPhoto(
-                { source: "./media/photoCategoriesWorker/quruvchi.jpg" },
+            await ctx.replyWithPhoto({ source: "./media/photoCategoriesWorker/quruvchi.jpg" },
                 Extra.caption("<b>Ro'yxatdan o'tish yoki ro'yxatni ko'rish</b>")
-                    .markup(
-                        Markup.inlineKeyboard([
-                            [
-                                Markup.callbackButton(
-                                    "Barcha ishchilar 📈",
-                                    "workers"
-                                ),
-                                Markup.callbackButton(
-                                    "Ish taklif etish 🖋",
-                                    "rgWork"
-                                ),
-                            ],
-                            [Markup.callbackButton("Ortga qaytish", "Back1")],
-                        ])
-                    )
-                    .HTML()
+                .markup(
+                    Markup.inlineKeyboard([
+                        [
+                            Markup.callbackButton(
+                                "Barcha ishchilar 📈",
+                                "workers"
+                            ),
+                            Markup.callbackButton(
+                                "Ish taklif etish 🖋",
+                                "rgWork"
+                            ),
+                        ],
+                        [Markup.callbackButton("Ortga qaytish", "Back1")],
+                    ])
+                )
+                .HTML()
             );
             break;
         case "Sotuvchilar":
-            await ctx.replyWithPhoto(
-                { source: "./media/photoCategoriesWorker/sotuvchi.jpg" },
+            await ctx.replyWithPhoto({ source: "./media/photoCategoriesWorker/sotuvchi.jpg" },
                 Extra.caption("<b>Ro'yxatdan o'tish yoki ro'yxatni ko'rish</b>")
-                    .markup(
-                        Markup.inlineKeyboard([
-                            [
-                                Markup.callbackButton(
-                                    "Barcha ishchilar 📈",
-                                    "workers"
-                                ),
-                                Markup.callbackButton(
-                                    "Ish taklif etish 🖋",
-                                    "rgWork"
-                                ),
-                            ],
-                            [Markup.callbackButton("Ortga qaytish", "Back1")],
-                        ])
-                    )
-                    .HTML()
+                .markup(
+                    Markup.inlineKeyboard([
+                        [
+                            Markup.callbackButton(
+                                "Barcha ishchilar 📈",
+                                "workers"
+                            ),
+                            Markup.callbackButton(
+                                "Ish taklif etish 🖋",
+                                "rgWork"
+                            ),
+                        ],
+                        [Markup.callbackButton("Ortga qaytish", "Back1")],
+                    ])
+                )
+                .HTML()
             );
             break;
         case "Ijarachilar":
-            await ctx.replyWithPhoto(
-                { source: "./media/photoCategoriesWorker/makler.jpg" },
+            await ctx.replyWithPhoto({ source: "./media/photoCategoriesWorker/makler.jpg" },
                 Extra.caption("<b>Ro'yxatdan o'tish yoki ro'yxatni ko'rish</b>")
-                    .markup(
-                        Markup.inlineKeyboard([
-                            [
-                                Markup.callbackButton(
-                                    "Barcha ishchilar 📈",
-                                    "workers"
-                                ),
-                                Markup.callbackButton(
-                                    "Ish taklif etish 🖋",
-                                    "rgWork"
-                                ),
-                            ],
-                            [Markup.callbackButton("Ortga qaytish", "Back1")],
-                        ])
-                    )
-                    .HTML()
+                .markup(
+                    Markup.inlineKeyboard([
+                        [
+                            Markup.callbackButton(
+                                "Barcha ishchilar 📈",
+                                "workers"
+                            ),
+                            Markup.callbackButton(
+                                "Ish taklif etish 🖋",
+                                "rgWork"
+                            ),
+                        ],
+                        [Markup.callbackButton("Ortga qaytish", "Back1")],
+                    ])
+                )
+                .HTML()
             );
             break;
         case "Novvoylar":
-            await ctx.replyWithPhoto(
-                { source: "./media/photoCategoriesWorker/nonvoy.jpg" },
+            await ctx.replyWithPhoto({ source: "./media/photoCategoriesWorker/nonvoy.jpg" },
                 Extra.caption("<b>Ro'yxatdan o'tish yoki ro'yxatni ko'rish</b>")
-                    .markup(
-                        Markup.inlineKeyboard([
-                            [
-                                Markup.callbackButton(
-                                    "Barcha ishchilar 📈",
-                                    "workers"
-                                ),
-                                Markup.callbackButton(
-                                    "Ish taklif etish 🖋",
-                                    "rgWork"
-                                ),
-                            ],
-                            [Markup.callbackButton("Ortga qaytish", "Back1")],
-                        ])
-                    )
-                    .HTML()
+                .markup(
+                    Markup.inlineKeyboard([
+                        [
+                            Markup.callbackButton(
+                                "Barcha ishchilar 📈",
+                                "workers"
+                            ),
+                            Markup.callbackButton(
+                                "Ish taklif etish 🖋",
+                                "rgWork"
+                            ),
+                        ],
+                        [Markup.callbackButton("Ortga qaytish", "Back1")],
+                    ])
+                )
+                .HTML()
             );
             break;
         case "Haydovchilar":
-            await ctx.replyWithPhoto(
-                { source: "./media/photoCategoriesWorker/shafyor.jpg" },
+            await ctx.replyWithPhoto({ source: "./media/photoCategoriesWorker/shafyor.jpg" },
                 Extra.caption("<b>Ro'yxatdan o'tish yoki ro'yxatni ko'rish</b>")
-                    .markup(
-                        Markup.inlineKeyboard([
-                            [
-                                Markup.callbackButton(
-                                    "Barcha ishchilar 📈",
-                                    "workers"
-                                ),
-                                Markup.callbackButton(
-                                    "Ish taklif etish 🖋",
-                                    "rgWork"
-                                ),
-                            ],
-                            [Markup.callbackButton("Ortga qaytish", "Back1")],
-                        ])
-                    )
-                    .HTML()
+                .markup(
+                    Markup.inlineKeyboard([
+                        [
+                            Markup.callbackButton(
+                                "Barcha ishchilar 📈",
+                                "workers"
+                            ),
+                            Markup.callbackButton(
+                                "Ish taklif etish 🖋",
+                                "rgWork"
+                            ),
+                        ],
+                        [Markup.callbackButton("Ortga qaytish", "Back1")],
+                    ])
+                )
+                .HTML()
             );
             break;
         case "Sport trinerlar":
-            await ctx.replyWithPhoto(
-                { source: "./media/photoCategoriesWorker/triner.jpg" },
+            await ctx.replyWithPhoto({ source: "./media/photoCategoriesWorker/triner.jpg" },
                 Extra.caption("<b>Ro'yxatdan o'tish yoki ro'yxatni ko'rish</b>")
-                    .markup(
-                        Markup.inlineKeyboard([
-                            [
-                                Markup.callbackButton(
-                                    "Barcha ishchilar 📈",
-                                    "workers"
-                                ),
-                                Markup.callbackButton(
-                                    "Ish taklif etish 🖋",
-                                    "rgWork"
-                                ),
-                            ],
-                            [Markup.callbackButton("Ortga qaytish", "Back1")],
-                        ])
-                    )
-                    .HTML()
+                .markup(
+                    Markup.inlineKeyboard([
+                        [
+                            Markup.callbackButton(
+                                "Barcha ishchilar 📈",
+                                "workers"
+                            ),
+                            Markup.callbackButton(
+                                "Ish taklif etish 🖋",
+                                "rgWork"
+                            ),
+                        ],
+                        [Markup.callbackButton("Ortga qaytish", "Back1")],
+                    ])
+                )
+                .HTML()
             );
             break;
         case "Elektriklar":
-            await ctx.replyWithPhoto(
-                { source: "./media/photoCategoriesWorker/duradgor.jpg" },
+            await ctx.replyWithPhoto({ source: "./media/photoCategoriesWorker/duradgor.jpg" },
                 Extra.caption("<b>Ro'yxatdan o'tish yoki ro'yxatni ko'rish</b>")
-                    .markup(
-                        Markup.inlineKeyboard([
-                            [
-                                Markup.callbackButton(
-                                    "Barcha ishchilar 📈",
-                                    "workers"
-                                ),
-                                Markup.callbackButton(
-                                    "Ish taklif etish 🖋",
-                                    "rgWork"
-                                ),
-                            ],
-                            [Markup.callbackButton("Ortga qaytish", "Back1")],
-                        ])
-                    )
-                    .HTML()
+                .markup(
+                    Markup.inlineKeyboard([
+                        [
+                            Markup.callbackButton(
+                                "Barcha ishchilar 📈",
+                                "workers"
+                            ),
+                            Markup.callbackButton(
+                                "Ish taklif etish 🖋",
+                                "rgWork"
+                            ),
+                        ],
+                        [Markup.callbackButton("Ortga qaytish", "Back1")],
+                    ])
+                )
+                .HTML()
             );
             break;
         case "Mexaniklar":
-            await ctx.replyWithPhoto(
-                { source: "./media/photoCategoriesWorker/mexanik.jpg" },
+            await ctx.replyWithPhoto({ source: "./media/photoCategoriesWorker/mexanik.jpg" },
                 Extra.caption("<b>Ro'yxatdan o'tish yoki ro'yxatni ko'rish</b>")
-                    .markup(
-                        Markup.inlineKeyboard([
-                            [
-                                Markup.callbackButton(
-                                    "Barcha ishchilar 📈",
-                                    "workers"
-                                ),
-                                Markup.callbackButton(
-                                    "Ish taklif etish 🖋",
-                                    "rgWork"
-                                ),
-                            ],
-                            [Markup.callbackButton("Ortga qaytish", "Back1")],
-                        ])
-                    )
-                    .HTML()
+                .markup(
+                    Markup.inlineKeyboard([
+                        [
+                            Markup.callbackButton(
+                                "Barcha ishchilar 📈",
+                                "workers"
+                            ),
+                            Markup.callbackButton(
+                                "Ish taklif etish 🖋",
+                                "rgWork"
+                            ),
+                        ],
+                        [Markup.callbackButton("Ortga qaytish", "Back1")],
+                    ])
+                )
+                .HTML()
             );
             break;
         case "Santexniklar":
-            await ctx.replyWithPhoto(
-                { source: "./media/photoCategoriesWorker/santexnik.jpg" },
+            await ctx.replyWithPhoto({ source: "./media/photoCategoriesWorker/santexnik.jpg" },
                 Extra.caption("<b>Ro'yxatdan o'tish yoki ro'yxatni ko'rish</b>")
-                    .markup(
-                        Markup.inlineKeyboard([
-                            [
-                                Markup.callbackButton(
-                                    "Barcha ishchilar 📈",
-                                    "workers"
-                                ),
-                                Markup.callbackButton(
-                                    "Ish taklif etish 🖋",
-                                    "rgWork"
-                                ),
-                            ],
-                            [Markup.callbackButton("Ortga qaytish", "Back1")],
-                        ])
-                    )
-                    .HTML()
+                .markup(
+                    Markup.inlineKeyboard([
+                        [
+                            Markup.callbackButton(
+                                "Barcha ishchilar 📈",
+                                "workers"
+                            ),
+                            Markup.callbackButton(
+                                "Ish taklif etish 🖋",
+                                "rgWork"
+                            ),
+                        ],
+                        [Markup.callbackButton("Ortga qaytish", "Back1")],
+                    ])
+                )
+                .HTML()
             );
             break;
         case "Auto moykachilar":
-            await ctx.replyWithPhoto(
-                { source: "./media/photoCategoriesWorker/automoychik.jpg" },
+            await ctx.replyWithPhoto({ source: "./media/photoCategoriesWorker/automoychik.jpg" },
                 Extra.caption(
                     "<b><i>Auto moychik</i>Ro'yxatdan o'tish yoki ro'yxatni ko'rish</b>"
                 )
-                    .markup(
-                        Markup.inlineKeyboard([
-                            [
-                                Markup.callbackButton(
-                                    "Barcha ishchilar 📈",
-                                    "workers"
-                                ),
-                                Markup.callbackButton(
-                                    "Ish taklif etish 🖋",
-                                    "rgWork"
-                                ),
-                            ],
-                            [Markup.callbackButton("Ortga qaytish", "Back1")],
-                        ])
-                    )
-                    .HTML()
+                .markup(
+                    Markup.inlineKeyboard([
+                        [
+                            Markup.callbackButton(
+                                "Barcha ishchilar 📈",
+                                "workers"
+                            ),
+                            Markup.callbackButton(
+                                "Ish taklif etish 🖋",
+                                "rgWork"
+                            ),
+                        ],
+                        [Markup.callbackButton("Ortga qaytish", "Back1")],
+                    ])
+                )
+                .HTML()
             );
             break;
     }
@@ -377,7 +361,7 @@ async function controlAddWorker(ctx) {
     await ctx.replyWithHTML(
         ` 📂Malumotlar joylansinmi ⁉️
 <b>👤 F.I.O</b>: '${ctx.session.familya} ${ctx.session.ism}'
-<b>⏳ osh </b>: ${ctx.session.yosh}
+<b>⏳ Yosh </b>: ${ctx.session.yosh}
 <b>🌐 Manzil </b>: ${ctx.session.manzil}
 <b>⏱ Murojaat qilish vaqti</b>: ${ctx.session.ishVaqti}
 <b>📞 Tel </b>: ${ctx.session.telNomer}
